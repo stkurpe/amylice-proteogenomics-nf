@@ -66,7 +66,7 @@ SRR32060234
 Run the complete workflow:
 
 ```bash
-export AWS_PROFILE=codex-sandbox
+export AWS_PROFILE=user-sandbox
 export AWS_REGION=us-east-1
 export S3_BUCKET=s3://your-bucket/your-prefix
 export CLEANUP_AFTER_UPLOAD=true
@@ -101,7 +101,7 @@ Force amyloid recomputation:
 Run proteome generation from already prepared S3 inputs:
 
 ```bash
-SOURCE_S3=s3://bioinfo-data-amylice-2026 \
+SOURCE_S3=s3://prepared-ngsdata \
 DEST_S3=s3://your-bucket/prepared-bioinfo-proteome \
 ./run_prepared_proteomes_from_bioinfo.sh
 ```
@@ -152,14 +152,3 @@ bash tests_amyloid/run_amyloid_contract_tests.sh
 bash tests_amyloid/test_run_amyloid_predictors_static.sh ./run_amyloid_predictors.sh
 ```
 
-## Safety
-
-This repository intentionally does **not** include:
-
-- AWS credentials;
-- SSH keys;
-- `.aws/`;
-- FASTQ/BAM/VCF/reference datasets;
-- generated results.
-
-Use S3 buckets and AWS profiles through environment variables.
