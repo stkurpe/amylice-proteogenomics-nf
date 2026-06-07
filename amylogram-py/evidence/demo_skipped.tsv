@@ -1,0 +1,3 @@
+Sequence_ID	Raw_Length	Clean_Length	Reason
+short_sequence	3	3	shorter_than_6
+empty_after_cleaning	6	0	empty_after_cleaning

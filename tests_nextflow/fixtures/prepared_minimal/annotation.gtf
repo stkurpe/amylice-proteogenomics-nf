@@ -1,0 +1,3 @@
+chrFixture	fixture	transcript	1	39	.	+	.	gene_id "GENE_FIXTURE"; transcript_id "ENST000001";
+chrFixture	fixture	exon	1	39	.	+	.	gene_id "GENE_FIXTURE"; transcript_id "ENST000001"; gene_name "GENE_FIXTURE";
+chrFixture	fixture	CDS	1	39	.	+	0	gene_id "GENE_FIXTURE"; transcript_id "ENST000001";

@@ -1,0 +1,20 @@
+{
+  "amyloid_records": 2,
+  "elapsed_seconds": 0.00225145899457857,
+  "input_fasta": "evidence/demo_input.fasta",
+  "input_fasta_sha256": "8c25dac66f395ba0c49250f731c692e639bf8e141dcc5861f8a32832953a0d93",
+  "max_probability": 0.8873439999999999,
+  "max_sequence_id": "VQIVYK",
+  "mean_probability": 0.8685550000000001,
+  "non_amyloid_records": 0,
+  "output_csv": "evidence/demo_predictions.csv",
+  "predicted_records": 2,
+  "predicted_records_per_second": 888.3128694841549,
+  "sixmer_table": "tests/fixtures/amylogram_sixmer_probabilities.bin",
+  "sixmer_table_sha256": "730b00ed9f16bb9d5b97c894c52f5baa9fa7076ffe5f318034c7d15f981ad504",
+  "skipped_records": 2,
+  "threshold": 0.5,
+  "top_k": 2,
+  "top_tsv": "evidence/demo_top_hits.tsv",
+  "total_records": 4
+}

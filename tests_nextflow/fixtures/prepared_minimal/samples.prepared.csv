@@ -1,0 +1,2 @@
+sample_id,kind,abundance,vcf,expected_proteins_dir,notes
+fixture_minimal,fixture,tests_nextflow/fixtures/prepared_minimal/abundance.tsv,tests_nextflow/fixtures/prepared_minimal/variants_filtered.vcf,tests_nextflow/fixtures/prepared_minimal/expected/results_proteins,Fixture-only manifest for the prepared proteome smoke test.

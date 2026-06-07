@@ -1,0 +1,3 @@
+sample_id,kind,abundance,vcf,expected_proteins_dir,notes
+fixture_minimal,fixture,tests_nextflow/fixtures/prepared_minimal/abundance.tsv,tests_nextflow/fixtures/prepared_minimal/variants_filtered.vcf,tests_nextflow/fixtures/prepared_minimal/expected/results_proteins,Small local contract fixture for phase 0 validation.
+SRR32060234,validated_sra,s3://codex-test-ngsdata-calculations/public-sra-test/SRR32060234/results_expression/abundance.tsv,s3://codex-test-ngsdata-calculations/public-sra-test/SRR32060234/results_gatk/variants_filtered.vcf.gz,s3://codex-test-ngsdata-calculations/public-sra-test/SRR32060234/results_proteins,Validated real sample selected as the bash baseline target.

@@ -1,0 +1,6 @@
+##fileformat=VCFv4.2
+##contig=<ID=chrFixture,length=90>
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fixture_minimal
+chrFixture	4	.	G	A	60	PASS	.	GT	0/1
+chrFixture	10	.	G	GT	60	PASS	.	GT	0/1

@@ -1,0 +1,62 @@
+# Python/R/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.codex_backups/
+.Rhistory
+.RData
+
+# Local runs and large bioinformatics outputs
+SRR*/
+results/
+run_logs/
+logs/
+references/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.sam
+*.vcf
+*.vcf.gz
+*.tbi
+*.fasta
+*.fa
+*.gtf
+*.gff
+*.idx
+*.bt2
+*.tar.gz
+
+# Nextflow local runtime artifacts
+.nextflow*
+!.nextflow.config
+.venv/
+work/
+results_nextflow*/
+results_nextflow_amyloid_smoke/
+
+# Keep deliberately tiny Nextflow test fixtures tracked.
+!tests_nextflow/fixtures/**/*.vcf
+!tests_nextflow/fixtures/**/*.fa
+!tests_nextflow/fixtures/**/*.fasta
+!tests_nextflow/fixtures/**/*.gtf
+
+# Secrets and local machine state
+.aws/
+.env
+*.pem
+*_accessKeys.csv
+accessKeys.csv
+credentials
+config.local.sh
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Omit GitHub Actions from the published snapshot unless the publisher has workflow scope.
+.github/workflows/

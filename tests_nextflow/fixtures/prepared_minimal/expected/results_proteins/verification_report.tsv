@@ -1,0 +1,17 @@
+status	check	path	message
+OK	exists:clean_ids	results_proteins/clean_ids.txt	required output exists
+OK	nonempty:clean_ids	results_proteins/clean_ids.txt	required output is non-empty
+OK	exists:protein	results_proteins/protein.fasta	required output exists
+OK	nonempty:protein	results_proteins/protein.fasta	required output is non-empty
+OK	exists:frameshift	results_proteins/frameshift_unique.fasta	required output exists
+OK	nonempty:frameshift	results_proteins/frameshift_unique.fasta	required output is non-empty
+OK	exists:combined	results_proteins/combine_proteome.fasta	required output exists
+OK	nonempty:combined	results_proteins/combine_proteome.fasta	required output is non-empty
+OK	exists:nonsense	results_proteins/nonsense_candidates.txt	required output exists
+OK	nonempty:nonsense	results_proteins/nonsense_candidates.txt	required output is non-empty
+OK	content:clean_ids	results_proteins/clean_ids.txt	clean transcript ids: 1
+OK	content:protein	results_proteins/protein.fasta	FASTA records: 2
+OK	content:frameshift	results_proteins/frameshift_unique.fasta	FASTA records: 1
+OK	content:combined	results_proteins/combine_proteome.fasta	FASTA records: 3
+OK	consistency:combined_contains_protein	results_proteins/combine_proteome.fasta	combined=3 protein=2
+OK	consistency:combined_contains_frameshift	results_proteins/combine_proteome.fasta	combined=3 frameshift=1
