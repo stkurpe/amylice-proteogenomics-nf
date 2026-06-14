@@ -1,0 +1,2 @@
+analysis_set	metric	n_AC	n_TOL	mean_AC	mean_TOL	median_AC	median_TOL	delta_mean_AC_minus_TOL	mannwhitney_p	welch_t_p	cliffs_delta_AC_vs_TOL	FDR_mannwhitney	FDR_welch
+nonsense_candidates	n_nonsense	6	5	36.0	57.0	18.0	50.0	-21.0	0.14321461201761468	0.4319960389434032	-0.5666666666666667	0.14321461201761468	0.4319960389434032

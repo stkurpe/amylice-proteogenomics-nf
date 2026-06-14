@@ -1,0 +1,2 @@
+metric	n_permutations	observed_delta_TOL_minus_AC	empirical_p_TOL_minus_AC_ge_observed	observed_percentile_in_null	null_mean	null_ci2_5	null_ci97_5
+strict_amyloid_TPM_fraction	10000	0.0	1.0	100.0	0.0	0.0	0.0

@@ -1,0 +1,12 @@
+{
+  "figure_png":"\/Users\/user841\/Documents\/Article\/analysis_outputs\/amyloid_bc_control_vs_chili\/figure3_graphical_evidence\/figure3_baseline_amyloidogenic_burden_evidence.png",
+  "figure_pdf":"\/Users\/user841\/Documents\/Article\/analysis_outputs\/amyloid_bc_control_vs_chili\/figure3_graphical_evidence\/figure3_baseline_amyloidogenic_burden_evidence.pdf",
+  "n_qc_samples":10,
+  "n_AC":6,
+  "n_TOL":4,
+  "primary_metric":"strict_amyloid_TPM_fraction",
+  "primary_delta_TOL_minus_AC":0.0538171933,
+  "primary_welch_p":0.1601240537,
+  "scatter_spearman_rho":0.1519763859,
+  "scatter_spearman_p":0.6751243318
+}

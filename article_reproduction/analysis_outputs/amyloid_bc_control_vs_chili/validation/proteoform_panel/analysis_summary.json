@@ -1,0 +1,9 @@
+{
+  "zarr_path": "/Users/user841/Projects/BIoinfServer/Results_analysis/bioinfo_zarr/validation_project.zarr",
+  "out_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/validation/proteoform_panel",
+  "n_requested_proteoforms": 30,
+  "n_protein_coding_retained": 30,
+  "n_excluded_non_protein_coding_or_unannotated": 0,
+  "random_seed": 20260606,
+  "n_bootstraps": 10000
+}

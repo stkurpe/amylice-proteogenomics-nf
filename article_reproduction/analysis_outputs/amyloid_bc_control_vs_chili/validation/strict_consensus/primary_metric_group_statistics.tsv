@@ -1,0 +1,4 @@
+metric	n_AC	n_TOL	mean_AC	mean_TOL	median_AC	median_TOL	observed_delta_TOL_minus_AC	mannwhitney_one_sided_TOL_gt_AC_p	cliffs_delta_TOL_vs_AC	rank_biserial_TOL_vs_AC	bootstrap_delta_ci2_5	bootstrap_delta_median	bootstrap_delta_ci97_5	sample_label_permutation_one_sided_p
+strict_amyloid_TPM_fraction	4	4	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0
+strict_amyloid_TPM	4	4	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0
+n_strict_amyloid_expressed_TPM_ge_1	4	4	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	1.0

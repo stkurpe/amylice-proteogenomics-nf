@@ -1,0 +1,11 @@
+analysis_set	metric	vote_column	threshold_rule	threshold_value
+all_BC_samples	strict_amyloid_TPM_fraction	vote_strict_amyloid_TPM_fraction_high	sample value > max(AC/control values within this analysis set)	0.1551968604326248
+all_BC_samples	n_strict_amyloid_expressed_TPM_ge_1	vote_n_strict_amyloid_transcripts_high	sample value > max(AC/control values within this analysis set)	2199.0
+all_BC_samples	n_nonsense_transcripts	vote_nonsense_burden_high	sample value > max(AC/control values within this analysis set)	138.0
+all_BC_samples	panel_strict_amyloid_TPM	vote_S100A9_B2M_LYZ_CLU_contributor_high	sample value > max(AC/control values within this analysis set)	16214.5625
+all_BC_samples	continuous_expression_weighted_amyloid_index	vote_continuous_amyloid_index_high	sample value > max(AC/control values within this analysis set)	0.1104161732644555
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	strict_amyloid_TPM_fraction	vote_strict_amyloid_TPM_fraction_high	sample value > max(AC/control values within this analysis set)	0.1551968604326248
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	n_strict_amyloid_expressed_TPM_ge_1	vote_n_strict_amyloid_transcripts_high	sample value > max(AC/control values within this analysis set)	2199.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	n_nonsense_transcripts	vote_nonsense_burden_high	sample value > max(AC/control values within this analysis set)	138.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	panel_strict_amyloid_TPM	vote_S100A9_B2M_LYZ_CLU_contributor_high	sample value > max(AC/control values within this analysis set)	16214.5625
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	continuous_expression_weighted_amyloid_index	vote_continuous_amyloid_index_high	sample value > max(AC/control values within this analysis set)	0.1104161732644555

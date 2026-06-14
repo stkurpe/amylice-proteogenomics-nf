@@ -1,0 +1,7 @@
+Consensus_2pred	AMYPred_Pred_norm	AmyloGramPy_Pred_norm	n_protein_rows	fraction
+Amyloid	Amyloid	Amyloid	124539	0.636308827361397
+Discordant	Amyloid	Non-Amyloid	4755	0.02429478696716244
+Discordant	Non-Amyloid	Amyloid	60512	0.3091747947333194
+Non-Amyloid	Non-Amyloid	Non-Amyloid	2149	0.010979915287577725
+Partial		Amyloid	1270	0.006488828485446119
+Partial		Non-Amyloid	2496	0.012752847165097256

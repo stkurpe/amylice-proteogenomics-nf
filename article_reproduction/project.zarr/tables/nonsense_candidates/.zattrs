@@ -1,0 +1,12 @@
+{
+    "columns": [
+        "sample",
+        "TRANSCRIPT_ID",
+        "LEN_H1",
+        "LEN_H2",
+        "LOSS",
+        "STATUS"
+    ],
+    "n_rows": 501,
+    "type": "dataframe"
+}

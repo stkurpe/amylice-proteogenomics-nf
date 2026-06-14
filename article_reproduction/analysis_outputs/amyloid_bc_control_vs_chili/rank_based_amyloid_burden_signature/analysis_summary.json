@@ -1,0 +1,119 @@
+{
+  "method": "Rank-Based Amyloid Burden Signature",
+  "rank_percentile_orientation": "1.0 = highest expressed among sample-level GENCODE v48 protein-coding transcripts; 0.0 = lowest",
+  "ranked_universe": "GENCODE v48 transcript_type == protein_coding transcripts present in the expression layer",
+  "gencode_cache": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/rank_based_amyloid_burden_signature/gencode_v48_transcript_annotation.tsv",
+  "n_gencode_protein_coding_transcripts": 89843,
+  "n_gencode_protein_coding_transcripts_in_expression_layer": 89491,
+  "primary_metric": "rank_based_strict_amyloid_burden_score",
+  "primary_metric_note": "Mean rank percentile of strict amyloid transcripts; set to 0 when a sample has no strict amyloid transcripts after sample x transcript collapse.",
+  "timepoint": "BC",
+  "group_mapping": {
+    "control": "AC",
+    "chili": "TOL"
+  },
+  "n_samples": 11,
+  "group_counts_all": {
+    "AC": 6,
+    "TOL": 5
+  },
+  "group_counts_qc": {
+    "AC": 6,
+    "TOL": 4
+  },
+  "coverage_qc_threshold": 0.5,
+  "qc_excluded_samples": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "raw_Group": "chili",
+      "protein_coding_annotation_fraction": 0.0976868080727996
+    }
+  ],
+  "statistics": [
+    {
+      "analysis_set": "all_BC_samples",
+      "metric": "rank_based_strict_amyloid_burden_score",
+      "n_AC": 6,
+      "n_TOL": 5,
+      "mean_AC": 0.6182731357379914,
+      "mean_TOL": 0.9141203083530576,
+      "median_AC": 0.9174870210630208,
+      "median_TOL": 0.9118017738377554,
+      "delta_mean_TOL_minus_AC": 0.2958471726150662,
+      "bootstrap_delta_mean_TOL_minus_AC_median": 0.29503425657312676,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": -0.016676399765994034,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.6120532770112924,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.2510822510822511,
+      "empirical_permutation_p_two_sided": 0.4329004329004329,
+      "mannwhitney_p_two_sided": 0.9270990616387901,
+      "welch_t_p_two_sided": 0.19079068502764016,
+      "cliffs_delta_TOL_vs_AC": -0.06666666666666667,
+      "direction_supports_hypothesis": true
+    },
+    {
+      "analysis_set": "coverage_qc_protein_annotation_fraction_ge_0.5",
+      "metric": "rank_based_strict_amyloid_burden_score",
+      "n_AC": 6,
+      "n_TOL": 4,
+      "mean_AC": 0.6182731357379914,
+      "mean_TOL": 0.914699941981883,
+      "median_AC": 0.9174870210630208,
+      "median_TOL": 0.9111155180847388,
+      "delta_mean_TOL_minus_AC": 0.2964268062438916,
+      "bootstrap_delta_mean_TOL_minus_AC_median": 0.29562781361683976,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": -0.01671813908262849,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.6132587743428645,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.29523809523809524,
+      "empirical_permutation_p_two_sided": 0.42857142857142855,
+      "mannwhitney_p_two_sided": 1.0,
+      "welch_t_p_two_sided": 0.19008730296633897,
+      "cliffs_delta_TOL_vs_AC": 0.0,
+      "direction_supports_hypothesis": true
+    },
+    {
+      "analysis_set": "sensitivity_strict_label_positive_samples",
+      "metric": "mean_rank_percentile_strict_amyloid",
+      "n_AC": 4,
+      "n_TOL": 5,
+      "mean_AC": 0.927409703606987,
+      "mean_TOL": 0.9141203083530576,
+      "median_AC": 0.924402936947345,
+      "median_TOL": 0.9118017738377554,
+      "delta_mean_TOL_minus_AC": -0.01328939525392947,
+      "bootstrap_delta_mean_TOL_minus_AC_median": -0.013096131221418283,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": -0.028364185193344826,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.000876993713477936,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.9206349206349206,
+      "empirical_permutation_p_two_sided": 0.15079365079365079,
+      "mannwhitney_p_two_sided": 0.19047619047619047,
+      "welch_t_p_two_sided": 0.1802578251420469,
+      "cliffs_delta_TOL_vs_AC": -0.6,
+      "direction_supports_hypothesis": false
+    },
+    {
+      "analysis_set": "sensitivity_strict_label_positive_coverage_qc",
+      "metric": "mean_rank_percentile_strict_amyloid",
+      "n_AC": 4,
+      "n_TOL": 4,
+      "mean_AC": 0.927409703606987,
+      "mean_TOL": 0.914699941981883,
+      "median_AC": 0.924402936947345,
+      "median_TOL": 0.9111155180847388,
+      "delta_mean_TOL_minus_AC": -0.012709761625104066,
+      "bootstrap_delta_mean_TOL_minus_AC_median": -0.012583295670122008,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": -0.02863731528685698,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.002410137208099572,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.8857142857142857,
+      "empirical_permutation_p_two_sided": 0.2571428571428571,
+      "mannwhitney_p_two_sided": 0.34285714285714286,
+      "welch_t_p_two_sided": 0.2201139658782944,
+      "cliffs_delta_TOL_vs_AC": -0.5,
+      "direction_supports_hypothesis": false
+    }
+  ],
+  "leave_one_out_direction_support_count": {
+    "all_BC_samples_leave_one_out": 11,
+    "coverage_qc_protein_annotation_fraction_ge_0.5_leave_one_out": 10
+  }
+}

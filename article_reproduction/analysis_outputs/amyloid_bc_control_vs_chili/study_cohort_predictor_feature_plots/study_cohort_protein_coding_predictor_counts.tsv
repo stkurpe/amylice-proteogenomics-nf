@@ -1,0 +1,4 @@
+filter	predictor	n_rows_total	n_present	n_missing	n_amyloid	n_non_amyloid	n_discordant	n_partial
+GENCODE protein_coding	AMYPred_Pred	227654	223955	3699	124147	99808	0	0
+GENCODE protein_coding	AmyloGramPy_Pred	227654	203528	24126	196096	7432	0	0
+GENCODE protein_coding	Consensus	227654	227654	0	120486	1969	101500	3699

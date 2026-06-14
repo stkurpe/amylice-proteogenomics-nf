@@ -1,0 +1,5 @@
+class	count	filter	classifier
+Amyloidogenic	6642	GENCODE protein_coding	BothPredictors_Q17_Q83_Class
+Intermediate	189607	GENCODE protein_coding	BothPredictors_Q17_Q83_Class
+Non-Amyloidogenic	1394	GENCODE protein_coding	BothPredictors_Q17_Q83_Class
+Missing	25889	GENCODE protein_coding	BothPredictors_Q17_Q83_Class

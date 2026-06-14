@@ -1,0 +1,5 @@
+predictor	n_rows_total	n_present	n_missing	n_amyloid	n_non_amyloid	n_discordant	n_partial	amyloid_fraction_of_present
+AMYPred_Pred	265844	262668	3176	146136	116532	0	0	0.5563525058248435
+AmyloGramPy_Pred	265844	237700	28144	228319	9381	0	0	0.9605342869162811
+AmyloGram_canonical_Pred	265844	265844	0	255492	10352	0	0	0.9610598696980184
+Consensus	265844	265844	0	140516	2807	119345	3176	0.52856562495298

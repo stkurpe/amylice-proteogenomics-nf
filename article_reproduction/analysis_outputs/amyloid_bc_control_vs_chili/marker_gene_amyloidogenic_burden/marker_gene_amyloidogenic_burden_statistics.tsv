@@ -1,0 +1,16 @@
+gene_name	metric	n_AC	mean_AC	median_AC	n_TOL	mean_TOL	median_TOL	delta_mean_TOL_minus_AC	cliffs_delta_TOL_vs_AC	mannwhitney_exact_p_two_sided
+ALB	absolute_amyloidogenic_burden	6	0.3278780379226372	0.0	4	2.7149452340527906	1.9435383979135696	2.3870671961301535	0.4166666666666667	0.35238095238095235
+ALB	normalized_amyloidogenic_fraction	2	0.5	0.5	2	1.0	1.0	0.5	0.5	0.6666666666666666
+ALB	KDmax_weighted_amyloidogenic_fraction	2	0.5	0.5	2	1.0	1.0	0.5	0.5	0.6666666666666666
+AFP	absolute_amyloidogenic_burden	6	0.531480589304821	0.0	4	0.0	0.0	-0.531480589304821	-0.16666666666666666	0.7619047619047619
+AFP	normalized_amyloidogenic_fraction	1	1.0	1.0	0					
+AFP	KDmax_weighted_amyloidogenic_fraction	1	1.0	1.0	0					
+CRP	absolute_amyloidogenic_burden	6	0.0	0.0	4	0.0	0.0	0.0	0.0	
+CRP	normalized_amyloidogenic_fraction	0			0					
+CRP	KDmax_weighted_amyloidogenic_fraction	0			0					
+IL6	absolute_amyloidogenic_burden	6	0.0	0.0	4	0.0	0.0	0.0	0.0	
+IL6	normalized_amyloidogenic_fraction	0			0					
+IL6	KDmax_weighted_amyloidogenic_fraction	0			0					
+SLFN11	absolute_amyloidogenic_burden	6	0.0	0.0	4	0.0	0.0	0.0	0.0	
+SLFN11	normalized_amyloidogenic_fraction	6	0.0	0.0	2	0.0	0.0	0.0	0.0	
+SLFN11	KDmax_weighted_amyloidogenic_fraction	6	0.0	0.0	2	0.0	0.0	0.0	0.0	
