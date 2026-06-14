@@ -1,0 +1,102 @@
+{
+  "method": "Leave-One-Subject-Out Stability Map",
+  "output_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/leave_one_subject_out_stability_map",
+  "selected_samples": [
+    "SRR32060276",
+    "SRR32060306",
+    "SRR32060309",
+    "SRR32060312",
+    "SRR32060326",
+    "SRR32060336",
+    "SRR32060341",
+    "SRR32060215",
+    "SRR32060216",
+    "SRR32060234",
+    "SRR32060240"
+  ],
+  "group_counts_all": {
+    "AC": 6,
+    "TOL": 5
+  },
+  "group_counts_coverage_qc": {
+    "AC": 6,
+    "TOL": 4
+  },
+  "coverage_min": 0.5,
+  "qc_excluded_samples": [
+    {
+      "sample": "SRR32060276",
+      "subject": "N132",
+      "Group": "TOL",
+      "raw_Group": "chili",
+      "protein_coding_annotation_fraction": 0.0827062651515007
+    }
+  ],
+  "primary_metric": "strict_amyloid_TPM_fraction",
+  "primary_group_statistics": [
+    {
+      "analysis_set": "all_BC_samples",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_AC": 6,
+      "n_TOL": 5,
+      "mean_AC": 0.07650108883778255,
+      "mean_TOL": 0.13924406468868256,
+      "median_AC": 0.0831429660320282,
+      "median_TOL": 0.1499590277671814,
+      "delta_mean_TOL_minus_AC": 0.06274297585090001,
+      "bootstrap_delta_mean_TOL_minus_AC_median": 0.0627607773989439,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": 0.0011137587328751836,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.12439245879650115,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.056155507559395246,
+      "empirical_permutation_p_two_sided": 0.12095032397408208,
+      "mannwhitney_p_two_sided": 0.11984615709682368,
+      "welch_t_p_two_sided": 0.10451713250458364,
+      "cliffs_delta_TOL_vs_AC": 0.6,
+      "hedges_g_TOL_minus_AC": 0.9717306117484582,
+      "direction_supports_hypothesis": true
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_AC": 6,
+      "n_TOL": 4,
+      "mean_AC": 0.07650108883778255,
+      "mean_TOL": 0.12383369728922844,
+      "median_AC": 0.0831429660320282,
+      "median_TOL": 0.11997321620583534,
+      "delta_mean_TOL_minus_AC": 0.04733260845144589,
+      "bootstrap_delta_mean_TOL_minus_AC_median": 0.04700522404164076,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_low": -0.011263636251290635,
+      "bootstrap_delta_mean_TOL_minus_AC_ci95_high": 0.10654950141906738,
+      "empirical_permutation_p_one_sided_TOL_gt_AC": 0.10900473933649289,
+      "empirical_permutation_p_two_sided": 0.24170616113744076,
+      "mannwhitney_p_two_sided": 0.23952554419355576,
+      "welch_t_p_two_sided": 0.19684087839466233,
+      "cliffs_delta_TOL_vs_AC": 0.5,
+      "hedges_g_TOL_minus_AC": 0.7412000602031765,
+      "direction_supports_hypothesis": true
+    }
+  ],
+  "primary_loso_stability": [
+    {
+      "analysis_set": "all_BC_samples",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_leave_one_subject_out": 11,
+      "n_supports_hypothesis": 11,
+      "min_delta_mean_TOL_minus_AC": 0.04733260845144589,
+      "median_delta_mean_TOL_minus_AC": 0.06212745159864426,
+      "max_delta_mean_TOL_minus_AC": 0.07721986174583435,
+      "percent_chili_gt_control": 100.0
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_leave_one_subject_out": 10,
+      "n_supports_hypothesis": 10,
+      "min_delta_mean_TOL_minus_AC": 0.032032390683889383,
+      "median_delta_mean_TOL_minus_AC": 0.04866098389029503,
+      "max_delta_mean_TOL_minus_AC": 0.06180949434638024,
+      "percent_chili_gt_control": 100.0
+    }
+  ]
+}

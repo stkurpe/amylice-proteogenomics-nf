@@ -1,0 +1,10 @@
+{
+  "zarr_path": "/Users/user841/Projects/BIoinfServer/Results_analysis/bioinfo_zarr/validation_project.zarr",
+  "out_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/validation/strict_amyloid_protein_coding_two_predictor",
+  "consensus_rule": "AMYPred_Pred == Amyloid and AmyloGramPy_Pred == Amyloid; AmyloGram_Pred ignored",
+  "protein_coding_only": true,
+  "overall_amyloidogenic_protein_rows": 107358,
+  "overall_amyloidogenic_protein_row_fraction": 0.6536215913449538,
+  "overall_unique_amyloidogenic_proteoforms": 30836,
+  "overall_unique_amyloidogenic_proteoform_fraction": 0.6515932719127715
+}

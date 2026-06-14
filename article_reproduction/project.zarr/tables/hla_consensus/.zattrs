@@ -1,0 +1,14 @@
+{
+    "columns": [
+        "sample",
+        "locus",
+        "allele",
+        "consensus_status",
+        "support_count",
+        "support_callers",
+        "caller_count",
+        "source_files"
+    ],
+    "n_rows": 109,
+    "type": "dataframe"
+}

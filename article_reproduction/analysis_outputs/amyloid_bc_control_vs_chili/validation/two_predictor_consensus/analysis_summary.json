@@ -1,0 +1,20 @@
+{
+  "zarr_path": "/Users/user841/Projects/BIoinfServer/Results_analysis/bioinfo_zarr/validation_project.zarr",
+  "out_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/validation/two_predictor_consensus",
+  "gencode_annotation": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/competitive_gene_set_test_gencode_v48_protein_coding/gencode_transcript_annotation_used.tsv",
+  "consensus_rule": {
+    "predictors_used": [
+      "AMYPred_Pred",
+      "AmyloGramPy_Pred"
+    ],
+    "ignored": [
+      "AmyloGram_Pred"
+    ],
+    "Amyloid": "both predictors are Amyloid",
+    "Non-Amyloid": "both predictors are Non-Amyloid",
+    "Discordant": "both predictors present but disagree",
+    "Partial": "exactly one of the two predictors is present"
+  },
+  "n_samples": 8,
+  "n_samples_passing_coverage_qc": 8
+}

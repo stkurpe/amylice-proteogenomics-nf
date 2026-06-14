@@ -1,0 +1,12 @@
+biotype	count
+protein_coding	223532
+nonsense_mediated_decay	41586
+unannotated	156
+IG_C_gene	151
+TR_V_gene	130
+non_stop_decay	124
+TR_C_gene	82
+retained_intron	45
+processed_transcript	14
+protein_coding_CDS_not_defined	14
+IG_V_gene	10

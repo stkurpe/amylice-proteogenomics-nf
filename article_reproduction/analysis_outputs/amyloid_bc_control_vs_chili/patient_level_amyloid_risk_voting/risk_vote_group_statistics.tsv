@@ -1,0 +1,3 @@
+analysis_set	n_AC	n_TOL	mean_AC	mean_TOL	median_AC	median_TOL	delta_mean_TOL_minus_AC	bootstrap_delta_mean_ci_low	bootstrap_delta_mean_ci_high	cliffs_delta_TOL_vs_AC	mannwhitney_two_sided_p	mannwhitney_one_sided_p_TOL_gt_AC	exact_label_permutation_p_TOL_gt_AC	exact_label_permutation_two_sided_p	n_exact_label_permutations
+all_BC_samples	6	5	0.0	0.6	0.0	1.0	0.6	0.2	1.0	0.6	0.04512694888867611	0.022563474444338056	0.06263498920086392	0.06263498920086392	462
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	6	4	0.0	0.5	0.0	0.5	0.5	0.0	1.0	0.5	0.09217699229803637	0.046088496149018186	0.13744075829383887	0.13744075829383887	210

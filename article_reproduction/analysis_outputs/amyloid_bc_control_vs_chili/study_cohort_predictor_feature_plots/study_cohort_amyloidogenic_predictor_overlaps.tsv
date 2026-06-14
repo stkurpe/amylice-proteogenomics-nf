@@ -1,0 +1,6 @@
+set	count
+AMYPred amyloid	146136
+AmyloGramPy amyloid	228319
+AmyloGram canonical amyloid	255492
+AMYPred & AmyloGramPy amyloid	137798
+AMYPred & AmyloGram canonical amyloid	140516

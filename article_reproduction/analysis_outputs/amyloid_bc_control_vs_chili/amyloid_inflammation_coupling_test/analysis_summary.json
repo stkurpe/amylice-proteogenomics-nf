@@ -1,0 +1,107 @@
+{
+  "method": "Amyloid-Inflammation Coupling Test",
+  "output_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/amyloid_inflammation_coupling_test",
+  "primary_endpoint": "strict_amyloid_TPM_fraction",
+  "primary_coupling_model": "immune_score ~ amyloid_score_z * Group",
+  "summary": {
+    "n_all_BC": 11,
+    "group_counts_all_BC": {
+      "AC": 6,
+      "TOL": 5
+    },
+    "n_coverage_QC": 10,
+    "group_counts_coverage_QC": {
+      "AC": 6,
+      "TOL": 4
+    },
+    "excluded_samples": [
+      {
+        "sample": "SRR32060276",
+        "subject": "N132",
+        "Group": "TOL",
+        "protein_coding_annotation_fraction": 0.08725464344024658
+      }
+    ]
+  },
+  "primary_burden_qc": {
+    "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+    "metric": "strict_amyloid_TPM_fraction",
+    "n_AC": 6,
+    "n_TOL": 4,
+    "mean_AC": 0.07863657797376315,
+    "mean_TOL": 0.13245377130806446,
+    "median_AC": 0.08874538913369179,
+    "median_TOL": 0.12830163538455963,
+    "delta_mean_TOL_minus_AC": 0.05381719333430131,
+    "delta_mean_TOL_minus_AC_ci_low": -0.0029310515305648243,
+    "delta_mean_TOL_minus_AC_ci_high": 0.1184078350663185,
+    "mannwhitney_p": 0.23952554419355576,
+    "welch_t_p": 0.16012405369208063,
+    "cliffs_delta_TOL_vs_AC": 0.5
+  },
+  "primary_myeloid_coupling_qc": {
+    "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+    "module": "myeloid_neutrophil",
+    "n_samples": 10,
+    "n_AC": 6,
+    "n_TOL": 4,
+    "mean_score_AC": 0.06197420308986887,
+    "mean_score_TOL": -0.19652328441874423,
+    "delta_mean_TOL_minus_AC": -0.2584974875086131,
+    "mannwhitney_p_score_group": 0.7619047619047619,
+    "welch_p_score_group": 0.58401529139162,
+    "cliffs_delta_TOL_vs_AC": -0.16666666666666666,
+    "pearson_r_AC": 0.16221047809182665,
+    "pearson_p_AC": 0.7588183433126348,
+    "pearson_r_TOL": 0.7523437942205713,
+    "pearson_p_TOL": 0.2476562057794287,
+    "pearson_r_diff_TOL_minus_AC": 0.5901333161287446,
+    "pearson_r_diff_ci_low": -1.2277636540295167,
+    "pearson_r_diff_ci_high": 1.6964938902500974,
+    "pearson_diff_empirical_p_two_sided": 0.6540284360189573,
+    "spearman_r_AC": 0.3188740696088466,
+    "spearman_p_AC": 0.537900560470205,
+    "spearman_r_TOL": 0.7999999999999999,
+    "spearman_p_TOL": 0.2000000000000001,
+    "spearman_r_diff_TOL_minus_AC": 0.4811259303911533,
+    "fisher_z_pearson_diff_TOL_minus_AC": 0.8146779054276362,
+    "ols_slope_AC": 0.11340429005078426,
+    "ols_slope_TOL": 0.6550692038904337,
+    "ols_interaction_coef_TOL_minus_AC": 0.5416649138396494,
+    "ols_interaction_p": 0.46015182200545285,
+    "ols_interaction_empirical_p_two_sided": 0.5023696682464455,
+    "ols_interaction_ci_low": -1.1558627674568416,
+    "ols_interaction_ci_high": 4.203041721283376,
+    "ols_r2": 0.2043377022531535
+  },
+  "module_coverage": [
+    {
+      "module": "myeloid_neutrophil",
+      "n_genes_defined": 16,
+      "n_genes_present": 16,
+      "genes_present": "S100A8,S100A9,LYZ,LST1,FCGR3B,FCGR1A,CSF3R,CXCR2,MMP9,ELANE,MPO,CEACAM8,ITGAM,TREM1,MNDA,AIF1",
+      "genes_missing": ""
+    },
+    {
+      "module": "interferon",
+      "n_genes_defined": 17,
+      "n_genes_present": 17,
+      "genes_present": "ISG15,IFI6,IFI27,IFI44,IFI44L,IFIT1,IFIT2,IFIT3,MX1,MX2,OAS1,OAS2,OAS3,RSAD2,IRF7,STAT1,CXCL10",
+      "genes_missing": ""
+    },
+    {
+      "module": "antigen_presentation",
+      "n_genes_defined": 16,
+      "n_genes_present": 16,
+      "genes_present": "HLA-A,HLA-B,HLA-C,HLA-DRA,HLA-DRB1,HLA-DPA1,HLA-DPB1,HLA-DQA1,HLA-DQB1,B2M,TAP1,TAP2,CD74,CIITA,PSME1,PSME2",
+      "genes_missing": ""
+    },
+    {
+      "module": "proteasome_UPR",
+      "n_genes_defined": 26,
+      "n_genes_present": 26,
+      "genes_present": "PSMB8,PSMB9,PSMB10,PSMB5,PSMC1,PSMC2,PSMC3,PSMC4,PSMC5,PSMC6,PSMD1,PSMD2,PSMD3,PSMD4,PSMD7,PSMD11,HSPA5,HSP90B1,XBP1,DDIT3,ATF4,CALR,CANX,PDIA3,ERN1,EIF2AK3",
+      "genes_missing": ""
+    }
+  ]
+}

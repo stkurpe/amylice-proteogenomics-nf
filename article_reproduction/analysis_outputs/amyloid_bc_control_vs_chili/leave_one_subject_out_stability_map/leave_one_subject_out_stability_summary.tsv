@@ -1,0 +1,11 @@
+analysis_set	metric	n_leave_one_subject_out	n_supports_hypothesis	min_delta_mean_TOL_minus_AC	median_delta_mean_TOL_minus_AC	max_delta_mean_TOL_minus_AC	percent_chili_gt_control
+all_BC_samples	continuous_expression_weighted_amyloid_index	11	11	0.037946991557594095	0.0649510588105083	0.10797555395584943	100.0
+all_BC_samples	n_strict_amyloid_expressed_TPM_ge_1	11	11	124.39999999999998	256.08333333333337	493.08333333333337	100.0
+all_BC_samples	strict_amyloid_TPM	11	11	5508.592187500006	18870.850911458336	32345.616536458336	100.0
+all_BC_samples	strict_amyloid_TPM_fraction	11	11	0.04733260845144589	0.06212745159864426	0.07721986174583435	100.0
+all_BC_samples	strict_weighted_index_sum	11	0	-8209.686281753333	-5327.517422544147	-786.5913667044933	0.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	continuous_expression_weighted_amyloid_index	10	10	0.05171546555099557	0.08744831250548854	0.12577096388778594	100.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	n_strict_amyloid_expressed_TPM_ge_1	10	10	344.54999999999995	510.4083333333333	611.55	100.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	strict_amyloid_TPM	10	10	20500.216796875	33629.732421875	44096.657421875	100.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	strict_amyloid_TPM_fraction	10	10	0.032032390683889383	0.04866098389029503	0.06180949434638024	100.0
+coverage_QC_protein_coding_annotation_fraction_ge_0_5	strict_weighted_index_sum	10	0	-12980.166293439725	-7873.243688457972	-3568.342902272294	0.0

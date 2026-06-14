@@ -1,0 +1,13 @@
+classifier	class	count	percent_of_present	n_present	n_missing
+AMYPred_Stringent_Class	Amyloidogenic	31914	12.020157888393395	265504	4998
+AMYPred_Stringent_Class	Intermediate	170088	64.0623116789201	265504	4998
+AMYPred_Stringent_Class	Non-Amyloidogenic	63502	23.91753043268651	265504	4998
+AMYPred_Stringent_Class	Missing	4998		265504	4998
+AmyloGramPy_Stringent_Class	Amyloidogenic	22507	9.293116974276394	242190	28312
+AmyloGramPy_Stringent_Class	Intermediate	218226	90.10528923572402	242190	28312
+AmyloGramPy_Stringent_Class	Non-Amyloidogenic	1457	0.6015937899995871	242190	28312
+AmyloGramPy_Stringent_Class	Missing	28312		242190	28312
+BothPredictors_Stringent_Class	Amyloidogenic	2299	0.9678940410733982	237526	32976
+BothPredictors_Stringent_Class	Intermediate	235223	99.03042193275684	237526	32976
+BothPredictors_Stringent_Class	Non-Amyloidogenic	4	0.0016840261697666783	237526	32976
+BothPredictors_Stringent_Class	Missing	32976		237526	32976

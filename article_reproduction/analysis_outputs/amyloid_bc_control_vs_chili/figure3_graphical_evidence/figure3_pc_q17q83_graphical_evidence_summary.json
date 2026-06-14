@@ -1,0 +1,86 @@
+{
+  "figure_png": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/figure3_graphical_evidence/figure3_baseline_pc_q17q83_amyloidogenic_burden_evidence.png",
+  "figure_pdf": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/figure3_graphical_evidence/figure3_baseline_pc_q17q83_amyloidogenic_burden_evidence.pdf",
+  "boxplot_png": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/figure3_graphical_evidence/pc_q17q83_log2TPM_kdmax_burden_boxplots.png",
+  "boxplot_pdf": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/figure3_graphical_evidence/pc_q17q83_log2TPM_kdmax_burden_boxplots.pdf",
+  "class_column": "ProteinCoding_BothPredictors_Q17_Q83_Class",
+  "class_counts_rows": {
+    "Intermediate": 191984,
+    "NA": 70437,
+    "Amyloidogenic": 6651,
+    "Non-Amyloidogenic": 1430
+  },
+  "n_baseline_samples": 8,
+  "n_AC": 4,
+  "n_TOL": 4,
+  "excluded_baseline_samples": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "reason": "protein_coding_annotation_fraction < 0.5"
+    },
+    {
+      "sample": "SRR32060215",
+      "Group": "AC",
+      "reason": "low AC amyloidogenic score outlier"
+    },
+    {
+      "sample": "SRR32060234",
+      "Group": "AC",
+      "reason": "no non-empty ProteinCoding_BothPredictors_Q17_Q83_Class rows"
+    }
+  ],
+  "primary_metric": "pc_q17q83_amyloidogenic_log2TPM_fraction",
+  "mean_AC": 0.035307757114679456,
+  "mean_TOL": 0.03567843055238272,
+  "median_AC": 0.0353067646954177,
+  "median_TOL": 0.03598957512773106,
+  "delta_mean_TOL_minus_AC": 0.00037067343770326444,
+  "bootstrap_ci_low": -0.0013261617328386502,
+  "bootstrap_ci_high": 0.0020189773681041495,
+  "mannwhitney_p": 0.8857142857142857,
+  "cliffs_delta_TOL_vs_AC": 0.125,
+  "boxplot_stats": {
+    "pc_q17q83_amyloidogenic_log2TPM_burden": {
+      "n_AC": 4,
+      "n_TOL": 4,
+      "mean_AC": 1681.4970552832742,
+      "mean_TOL": 1779.8522433785993,
+      "median_AC": 1598.634301567405,
+      "median_TOL": 1836.5271336289138,
+      "delta_mean_TOL_minus_AC": 98.35518809532505,
+      "bootstrap_ci_low": -300.97464803593175,
+      "bootstrap_ci_high": 448.1086577315479,
+      "mannwhitney_p": 0.8857142857142857,
+      "cliffs_delta_TOL_vs_AC": 0.125
+    },
+    "pc_q17q83_amyloidogenic_log2TPM_fraction": {
+      "n_AC": 4,
+      "n_TOL": 4,
+      "mean_AC": 0.035307757114679456,
+      "mean_TOL": 0.03567843055238272,
+      "median_AC": 0.0353067646954177,
+      "median_TOL": 0.03598957512773106,
+      "delta_mean_TOL_minus_AC": 0.00037067343770326444,
+      "bootstrap_ci_low": -0.0013261617328386502,
+      "bootstrap_ci_high": 0.0020189773681041495,
+      "mannwhitney_p": 0.8857142857142857,
+      "cliffs_delta_TOL_vs_AC": 0.125
+    },
+    "pc_q17q83_kdmax_weighted_amyloidogenic_log2TPM_fraction": {
+      "n_AC": 4,
+      "n_TOL": 4,
+      "mean_AC": 0.040423886998631274,
+      "mean_TOL": 0.04067441292376555,
+      "median_AC": 0.04015437179313562,
+      "median_TOL": 0.04111737186109418,
+      "delta_mean_TOL_minus_AC": 0.0002505259251342762,
+      "bootstrap_ci_low": -0.0016663399563632624,
+      "bootstrap_ci_high": 0.001933320299964965,
+      "mannwhitney_p": 0.6857142857142857,
+      "cliffs_delta_TOL_vs_AC": 0.25
+    }
+  },
+  "scatter_spearman_rho": 0.880952380952381,
+  "scatter_spearman_p": 0.0038503204637324023
+}

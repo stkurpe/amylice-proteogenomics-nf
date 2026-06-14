@@ -1,0 +1,15 @@
+{
+  "out_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL",
+  "class_column": "ProteinCoding_BothPredictors_Q17_Q83_Class",
+  "n_samples": 11,
+  "n_AC": 6,
+  "n_TOL": 5,
+  "n_amyloidogenic_transcripts_tested": 322,
+  "n_tests": 966,
+  "n_FDR_lt_0_10": 3,
+  "sample_boxplot_png": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL/sample_level_log2TPM_metric_boxplots_AC_vs_TOL.png",
+  "sample_boxplot_pdf": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL/sample_level_log2TPM_metric_boxplots_AC_vs_TOL.pdf",
+  "forest_png": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL/top_proteoform_metric_forest_grid_AC_vs_TOL.png",
+  "forest_pdf": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL/top_proteoform_metric_forest_grid_AC_vs_TOL.pdf",
+  "report": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/proteoform_log2TPM_metric_differences_AC_vs_TOL/proteoform_log2TPM_metric_differences_report.md"
+}

@@ -1,0 +1,249 @@
+{
+  "method": "Competitive gene-set test using strict amyloid transcripts as set. Transcripts ranked by log2FC TOL/chili vs AC/control from counts-derived logCPM; competitive Mann-Whitney/AUC and random-set empirical p-value, plus phenotype-permutation GSEA.",
+  "annotation_path": "/Users/user841/Documents/Article/GSE287540_SraRunTable.csv",
+  "gencode_annotation_path": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/rank_based_amyloid_burden_signature/gencode_v48_transcript_annotation.tsv",
+  "universe": "GENCODE v48 biotype == protein_coding transcripts intersecting the quantified transcript count matrix and count filter.",
+  "selected_BC_samples": [
+    {
+      "sample": "SRR32060276",
+      "subject": "N132",
+      "time": "BC",
+      "raw_Group": "chili",
+      "Group": "TOL",
+      "batch": 4,
+      "AGE": 44,
+      "sex": "female",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060306",
+      "subject": "N101",
+      "time": "BC",
+      "raw_Group": "chili",
+      "Group": "TOL",
+      "batch": 4,
+      "AGE": 50,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060309",
+      "subject": "N87",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 3,
+      "AGE": 63,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060312",
+      "subject": "N106",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 3,
+      "AGE": 49,
+      "sex": "female",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060326",
+      "subject": "N032",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 2,
+      "AGE": 55,
+      "sex": "female",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060336",
+      "subject": "N072",
+      "time": "BC",
+      "raw_Group": "chili",
+      "Group": "TOL",
+      "batch": 2,
+      "AGE": 71,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060341",
+      "subject": "N064",
+      "time": "BC",
+      "raw_Group": "chili",
+      "Group": "TOL",
+      "batch": 2,
+      "AGE": 72,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060215",
+      "subject": "N015",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 1,
+      "AGE": 73,
+      "sex": "male",
+      "treatment": "Pembrolizumab"
+    },
+    {
+      "sample": "SRR32060216",
+      "subject": "N022",
+      "time": "BC",
+      "raw_Group": "chili",
+      "Group": "TOL",
+      "batch": 1,
+      "AGE": 67,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060234",
+      "subject": "N159",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 5,
+      "AGE": 56,
+      "sex": "female",
+      "treatment": "Ipilimumab + Nivolumab"
+    },
+    {
+      "sample": "SRR32060240",
+      "subject": "N149",
+      "time": "BC",
+      "raw_Group": "control",
+      "Group": "AC",
+      "batch": 5,
+      "AGE": 76,
+      "sex": "male",
+      "treatment": "Ipilimumab + Nivolumab"
+    }
+  ],
+  "coverage_qc": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.0976868059572626,
+      "keep_coverage_qc": false
+    },
+    {
+      "sample": "SRR32060306",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.9289138409237887,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060309",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.7586694199613285,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060312",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.9006848752308857,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060326",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.9510329958528282,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060336",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.9380880478170913,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060341",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.7496674236782508,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060215",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.9452773526426395,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060216",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.8849746797129578,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060234",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.977692847188423,
+      "keep_coverage_qc": true
+    },
+    {
+      "sample": "SRR32060240",
+      "Group": "AC",
+      "protein_coding_annotation_fraction": 0.964128664361676,
+      "keep_coverage_qc": true
+    }
+  ],
+  "excluded_by_coverage_qc": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.0976868059572626
+    }
+  ],
+  "n_strict_amyloid_transcripts_in_global_set": 2669,
+  "results": [
+    {
+      "analysis_set": "all_BC_samples",
+      "n_samples": 11,
+      "n_AC": 6,
+      "n_TOL": 5,
+      "n_transcripts_tested": 17776,
+      "n_strict_amyloid_transcripts_tested": 1245,
+      "mean_log2FC_strict_amyloid": 0.18891631066799164,
+      "mean_log2FC_background": 0.2940288782119751,
+      "mean_log2FC_difference_amyloid_minus_background": -0.10511256754398346,
+      "strict_amyloid_mean_log2FC_bootstrap_ci_low": 0.1462003089655116,
+      "strict_amyloid_mean_log2FC_bootstrap_ci_high": 0.23163260978927094,
+      "mannwhitney_one_sided_p_amyloid_gt_background": 0.9999556541442871,
+      "auc_probability_amyloid_log2FC_gt_background": 0.4667453467845917,
+      "empirical_p_random_sets_mean_log2FC_greater": 1.0,
+      "gsea_ES": 0.18417905541174498,
+      "gsea_NES": 0.8444923282574432,
+      "gsea_empirical_p_ES_greater": 0.40835916408359163,
+      "n_gsea_label_permutations": 10000,
+      "n_random_set_permutations": 10000
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "n_samples": 10,
+      "n_AC": 6,
+      "n_TOL": 4,
+      "n_transcripts_tested": 17014,
+      "n_strict_amyloid_transcripts_tested": 1182,
+      "mean_log2FC_strict_amyloid": 0.19701087474822998,
+      "mean_log2FC_background": 0.3078180253505707,
+      "mean_log2FC_difference_amyloid_minus_background": -0.1108071506023407,
+      "strict_amyloid_mean_log2FC_bootstrap_ci_low": 0.14923272341704108,
+      "strict_amyloid_mean_log2FC_bootstrap_ci_high": 0.24528925616149166,
+      "mannwhitney_one_sided_p_amyloid_gt_background": 0.9997982382774353,
+      "auc_probability_amyloid_log2FC_gt_background": 0.4692050516605377,
+      "empirical_p_random_sets_mean_log2FC_greater": 0.9999000099990001,
+      "gsea_ES": 0.18391874331748365,
+      "gsea_NES": 0.7899634071993304,
+      "gsea_empirical_p_ES_greater": 0.4664533546645335,
+      "n_gsea_label_permutations": 10000,
+      "n_random_set_permutations": 10000
+    }
+  ]
+}

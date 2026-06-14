@@ -1,0 +1,13 @@
+classifier	class	count	percent_of_present	n_present	n_missing
+AMYPred_Q17_Q83_Class	Amyloidogenic	45137	17.00049716765096	265504	4998
+AMYPred_Q17_Q83_Class	Intermediate	175231	65.9993823068579	265504	4998
+AMYPred_Q17_Q83_Class	Non-Amyloidogenic	45136	17.00012052549114	265504	4998
+AMYPred_Q17_Q83_Class	Missing	4998		265504	4998
+AmyloGramPy_Q17_Q83_Class	Amyloidogenic	41508	17.138610182088442	242190	28312
+AmyloGramPy_Q17_Q83_Class	Intermediate	159502	65.85821049589165	242190	28312
+AmyloGramPy_Q17_Q83_Class	Non-Amyloidogenic	41180	17.0031793220199	242190	28312
+AmyloGramPy_Q17_Q83_Class	Missing	28312		242190	28312
+BothPredictors_Q17_Q83_Class	Amyloidogenic	7126	3.0000926214393373	237526	32976
+BothPredictors_Q17_Q83_Class	Intermediate	228691	96.28040719752785	237526	32976
+BothPredictors_Q17_Q83_Class	Non-Amyloidogenic	1709	0.7195001810328132	237526	32976
+BothPredictors_Q17_Q83_Class	Missing	32976		237526	32976

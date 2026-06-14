@@ -1,0 +1,78 @@
+{
+  "method": "directional_replication_score_gencode_protein_coding_panel",
+  "timepoint": "BC",
+  "group_map": {
+    "control": "AC",
+    "chili": "TOL",
+    "chill": "TOL"
+  },
+  "panel_genes": [
+    "ZNF580",
+    "STMP1",
+    "FXYD5",
+    "SEPTIN7",
+    "AP2B1",
+    "YLPM1",
+    "SNX10",
+    "TACC1",
+    "HBP1",
+    "PSMD8"
+  ],
+  "strict_label": "Consensus_collapsed == \"Amyloid\"",
+  "continuous_score": "Amyloid_Index_max",
+  "coverage_min": 0.5,
+  "gencode_path": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/rank_based_amyloid_burden_signature/gencode_v48_transcript_annotation.tsv",
+  "outputs": [
+    "DIRECTIONAL_REPLICATION_SCORE_REPORT.md",
+    "analysis_summary.json",
+    "collapsed_sample_transcript_amyloid_annotations.tsv",
+    "directional_replication_summary.tsv",
+    "panel_gene_directional_replication.tsv",
+    "panel_gene_sample_metrics.tsv",
+    "panel_sample_burden_metrics.tsv",
+    "panel_sample_burden_statistics.tsv",
+    "panel_transcript_expression_long.tsv",
+    "sample_coverage_qc.tsv",
+    "sample_metadata.tsv"
+  ],
+  "summary": [
+    {
+      "analysis_set": "all_BC_samples",
+      "n_samples": 11,
+      "n_AC": 6,
+      "n_TOL": 5,
+      "n_panel_genes": 10,
+      "n_fixed_panel_replicated_expected_direction": 4,
+      "fixed_panel_directional_replication_score": 0.4,
+      "fixed_panel_binomial_greater_p_ties_as_not_replicated": 0.828125,
+      "fixed_panel_score_ci95_low": 0.1500282408066796,
+      "fixed_panel_score_ci95_high": 1.0,
+      "n_informative_genes": 4,
+      "n_replicated_expected_direction": 4,
+      "directional_replication_score": 1.0,
+      "binomial_sign_test_greater_p": 0.0625,
+      "directional_replication_score_ci95_low": 0.472870804501588,
+      "directional_replication_score_ci95_high": 1.0,
+      "excluded_samples_qc": "SRR32060276"
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "n_samples": 10,
+      "n_AC": 6,
+      "n_TOL": 4,
+      "n_panel_genes": 10,
+      "n_fixed_panel_replicated_expected_direction": 6,
+      "fixed_panel_directional_replication_score": 0.6,
+      "fixed_panel_binomial_greater_p_ties_as_not_replicated": 0.376953125,
+      "fixed_panel_score_ci95_low": 0.3035372125640421,
+      "fixed_panel_score_ci95_high": 1.0,
+      "n_informative_genes": 6,
+      "n_replicated_expected_direction": 6,
+      "directional_replication_score": 1.0,
+      "binomial_sign_test_greater_p": 0.015625,
+      "directional_replication_score_ci95_low": 0.6069622310029174,
+      "directional_replication_score_ci95_high": 1.0,
+      "excluded_samples_qc": ""
+    }
+  ]
+}

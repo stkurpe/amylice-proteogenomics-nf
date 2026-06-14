@@ -1,0 +1,7 @@
+analysis_set	metric	column	n_AC	n_TOL	mean_AC	mean_TOL	delta_TOL_minus_AC	sd_AC	sd_TOL	cohen_d_TOL_minus_AC	hedges_g_TOL_minus_AC	welch_p	mannwhitney_p	n_per_group_80_power	n_per_group_90_power
+all_baseline	Burden	amyloidogenic_burden_log2TPM	6	5	1105.592	1402.463	296.870	865.676	728.396	0.368	0.336	0.552	0.662	140	187
+all_baseline	Fraction	amyloidogenic_fraction_log2TPM	6	5	0.022960	0.031721	0.008761	0.017372	0.004490	0.659	0.603	0.281	0.931	45	59
+all_baseline	KDmax-weighted Fraction	kdmax_weighted_amyloidogenic_fraction_log2TPM	6	5	0.026437	0.037942	0.011505	0.020143	0.002227	0.763	0.697	0.222	0.931	34	45
+figure3_QC_filtered	Burden	pc_q17q83_amyloidogenic_log2TPM_burden	4	4	1681.497	1779.852	98.355	297.770	328.443	0.314	0.273	0.673	0.886	212	284
+figure3_QC_filtered	Fraction	pc_q17q83_amyloidogenic_log2TPM_fraction	4	4	0.035308	0.035678	0.000371	0.001816	0.000839	0.262	0.228	0.729	0.886	304	406
+figure3_QC_filtered	KDmax-weighted Fraction	pc_q17q83_kdmax_weighted_amyloidogenic_log2TPM_fraction	4	4	0.040424	0.040674	0.000251	0.001945	0.000983	0.163	0.141	0.828	0.686	787	1053

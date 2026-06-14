@@ -1,0 +1,19 @@
+{
+    "columns": [
+        "sample",
+        "protein_id",
+        "protein_length",
+        "KD_mean",
+        "KD_max",
+        "KD_sd",
+        "charge",
+        "charge_density",
+        "aromaticity",
+        "alpha_propensity",
+        "beta_propensity",
+        "chameleon_score",
+        "pI"
+    ],
+    "n_rows": 270909,
+    "type": "dataframe"
+}
