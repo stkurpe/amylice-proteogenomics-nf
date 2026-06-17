@@ -1,0 +1,45 @@
+{
+    "bucket": "codex-test-ngsdata-calculations",
+    "files": {
+        "amyloid": "results_amyloid/amyloid_combined_predictions.csv",
+        "expression": "results_expression/abundance.tsv",
+        "hla": "results_hla/hla_consensus.tsv",
+        "nonsense": "results_proteins/nonsense_candidates.txt",
+        "protein_features": "results_protein_features/protein_features.csv"
+    },
+    "prefix": "prepared-bioinfo-proteome",
+    "prefixes": [
+        "prepared-bioinfo-proteome",
+        "public-sra-test"
+    ],
+    "protein_coding_consensus_class": {
+        "column": "ProteinCoding_BothPredictors_Q17_Q83_Class",
+        "filter": "GENCODE biotype == protein_coding",
+        "gencode_annotation": "analysis_outputs/amyloid_bc_control_vs_chili/rank_based_amyloid_burden_signature/gencode_v48_transcript_annotation.tsv",
+        "source_class": "BothPredictors_Q17_Q83_Class"
+    },
+    "q17_q83_probability_thresholds": {
+        "AMYPred_Prob": {
+            "q17": 0.12062030719043373,
+            "q83": 0.8802438332506314
+        },
+        "AmyloGramPy_Prob": {
+            "q17": 0.6946844,
+            "q83": 0.8898172
+        }
+    },
+    "samples": [
+        "SRR32060215",
+        "SRR32060216",
+        "SRR32060234",
+        "SRR32060240",
+        "SRR32060276",
+        "SRR32060306",
+        "SRR32060309",
+        "SRR32060312",
+        "SRR32060326",
+        "SRR32060336",
+        "SRR32060341"
+    ],
+    "schema": "bioinfo-proteome-zarr-v1"
+}

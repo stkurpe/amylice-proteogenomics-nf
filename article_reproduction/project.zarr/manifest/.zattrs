@@ -1,0 +1,12 @@
+{
+    "columns": [
+        "sample",
+        "kind",
+        "s3",
+        "requested_s3",
+        "downloaded",
+        "detail"
+    ],
+    "n_rows": 55,
+    "type": "dataframe"
+}

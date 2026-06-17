@@ -1,0 +1,25 @@
+{
+  "zarr_path": "/Users/user841/Projects/BIoinfServer/Results_analysis/bioinfo_zarr/validation_project.zarr",
+  "out_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/validation",
+  "requested_samples": [
+    "SRR32060218",
+    "SRR32060222",
+    "SRR32060224",
+    "SRR32060226",
+    "SRR32060252",
+    "SRR32060255",
+    "SRR32060299",
+    "SRR32060304"
+  ],
+  "coverage_min": 0.5,
+  "n_bootstraps": 10000,
+  "n_permutations": 10000,
+  "random_seed": 20260606,
+  "status": "completed",
+  "gencode_annotation": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/competitive_gene_set_test_gencode_v48_protein_coding/gencode_transcript_annotation_used.tsv",
+  "positive_consensus_label": "Partial",
+  "n_gencode_protein_coding_transcripts": 89843,
+  "n_samples_requested": 8,
+  "n_samples_metadata": 8,
+  "n_samples_passing_coverage_qc": 8
+}

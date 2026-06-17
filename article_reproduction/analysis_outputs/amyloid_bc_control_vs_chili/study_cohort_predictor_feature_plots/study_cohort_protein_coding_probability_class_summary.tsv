@@ -1,0 +1,25 @@
+filter	classifier	class	count	percent_of_present	n_present	n_missing	n_rows_after_filter
+GENCODE protein_coding	AMYPred_Q17_Q83_Class	Amyloidogenic	38772	17.312406510236432	223955	3699	227654
+GENCODE protein_coding	AMYPred_Q17_Q83_Class	Intermediate	143961	64.28121720881427	223955	3699	227654
+GENCODE protein_coding	AMYPred_Q17_Q83_Class	Non-Amyloidogenic	41222	18.4063762809493	223955	3699	227654
+GENCODE protein_coding	AMYPred_Q17_Q83_Class	Missing	3699		223955	3699	227654
+GENCODE protein_coding	AmyloGramPy_Q17_Q83_Class	Amyloidogenic	37987	18.664262411068748	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Q17_Q83_Class	Intermediate	137430	67.52387877834991	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Q17_Q83_Class	Non-Amyloidogenic	28111	13.811858810581345	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Q17_Q83_Class	Missing	24126		203528	24126	227654
+GENCODE protein_coding	BothPredictors_Q17_Q83_Class	Amyloidogenic	6651	3.3244195636418166	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Q17_Q83_Class	Intermediate	191984	95.96081273586084	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Q17_Q83_Class	Non-Amyloidogenic	1430	0.7147677004973384	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Q17_Q83_Class	Missing	27589		200065	27589	227654
+GENCODE protein_coding	AMYPred_Stringent_Class	Amyloidogenic	26906	12.014020673796075	223955	3699	227654
+GENCODE protein_coding	AMYPred_Stringent_Class	Intermediate	140283	62.638922997923686	223955	3699	227654
+GENCODE protein_coding	AMYPred_Stringent_Class	Non-Amyloidogenic	56766	25.34705632828024	223955	3699	227654
+GENCODE protein_coding	AMYPred_Stringent_Class	Missing	3699		223955	3699	227654
+GENCODE protein_coding	AmyloGramPy_Stringent_Class	Amyloidogenic	20683	10.162238119570771	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Stringent_Class	Intermediate	181722	89.28599504736448	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Stringent_Class	Non-Amyloidogenic	1123	0.551766833064738	203528	24126	227654
+GENCODE protein_coding	AmyloGramPy_Stringent_Class	Missing	24126		203528	24126	227654
+GENCODE protein_coding	BothPredictors_Stringent_Class	Amyloidogenic	2127	1.0631544747956914	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Stringent_Class	Intermediate	197938	98.9368455252043	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Stringent_Class	Non-Amyloidogenic	0	0.0	200065	27589	227654
+GENCODE protein_coding	BothPredictors_Stringent_Class	Missing	27589		200065	27589	227654

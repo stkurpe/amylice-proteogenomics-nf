@@ -1,0 +1,2 @@
+metric	n_permutations	observed_delta_TOL_minus_AC	empirical_p_TOL_minus_AC_ge_observed	observed_percentile_in_null	null_mean	null_ci2_5	null_ci97_5
+partial_consensus_TPM_fraction	10000	-0.031800073536301876	0.6041395860413958	39.589999999999996	-0.012863522800705659	-0.15205926767429193	0.1285723167715912

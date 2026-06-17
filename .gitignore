@@ -60,3 +60,4 @@ config.local.sh
 
 # Omit GitHub Actions from the published snapshot unless the publisher has workflow scope.
 .github/workflows/
+article_reproduction/pdf_extracted_figures/

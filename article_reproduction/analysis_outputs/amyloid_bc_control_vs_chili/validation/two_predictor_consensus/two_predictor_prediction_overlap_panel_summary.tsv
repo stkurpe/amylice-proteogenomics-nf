@@ -1,0 +1,3 @@
+level	amypred	amylogram	both	amypred_only	amylogram_only	partial_amylogram	total
+raw_protein_rows	129294	186321	124539	4755	61782	1270.0	195721
+collapsed_gencode_protein_coding_transcripts	77156	110720	75464	1692	35256		113954

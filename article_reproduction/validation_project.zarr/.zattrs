@@ -1,0 +1,21 @@
+{
+    "bucket": "codex-test-ngsdata-calculations",
+    "files": {
+        "amyloid": "results_amyloid/amyloid_combined_predictions.csv",
+        "expression": "results_expression/abundance.tsv",
+        "hla": "results_hla/hla_consensus.tsv",
+        "nonsense": "results_proteins/nonsense_candidates.txt"
+    },
+    "prefix": "prepared-bioinfo-proteome",
+    "samples": [
+        "SRR32060218",
+        "SRR32060222",
+        "SRR32060224",
+        "SRR32060226",
+        "SRR32060252",
+        "SRR32060255",
+        "SRR32060299",
+        "SRR32060304"
+    ],
+    "schema": "bioinfo-proteome-zarr-v1"
+}

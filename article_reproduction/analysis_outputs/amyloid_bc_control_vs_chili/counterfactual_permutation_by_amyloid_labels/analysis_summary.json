@@ -1,0 +1,61 @@
+{
+  "method": "Counterfactual Permutation by Amyloid Labels",
+  "random_seed": 20260604,
+  "n_permutations": 10000,
+  "n_bootstraps": 10000,
+  "selected_samples": [
+    "SRR32060276",
+    "SRR32060306",
+    "SRR32060309",
+    "SRR32060312",
+    "SRR32060326",
+    "SRR32060336",
+    "SRR32060341",
+    "SRR32060215",
+    "SRR32060216",
+    "SRR32060234",
+    "SRR32060240"
+  ],
+  "group_counts": {
+    "AC": 6,
+    "TOL": 5
+  },
+  "low_coverage_samples": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "protein_coding_annotation_fraction": 0.0872549257918879
+    }
+  ],
+  "primary_endpoint": "strict_amyloid_TPM_fraction",
+  "primary_results": [
+    {
+      "analysis_set": "all_BC_samples",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_permutations": 10000,
+      "observed_delta_TOL_minus_AC": 0.06774488255927295,
+      "null_mean_delta": -0.01838701237814487,
+      "null_sd_delta": 0.04030967933876837,
+      "null_ci2_5": -0.09596810320336764,
+      "null_ci97_5": 0.06072849224170239,
+      "empirical_p_greater": 0.0178982101789821,
+      "empirical_p_less": 0.9822017798220178,
+      "empirical_p_two_sided": 0.0357964203579642,
+      "empirical_percentile": 0.9822
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "metric": "strict_amyloid_TPM_fraction",
+      "n_permutations": 10000,
+      "observed_delta_TOL_minus_AC": 0.053439248842161405,
+      "null_mean_delta": -0.01646745903387153,
+      "null_sd_delta": 0.04154523096294127,
+      "null_ci2_5": -0.09646714272314401,
+      "null_ci97_5": 0.0669847580445887,
+      "empirical_p_greater": 0.049595040495950406,
+      "empirical_p_less": 0.9505049495050495,
+      "empirical_p_two_sided": 0.09919008099190081,
+      "empirical_percentile": 0.9505
+    }
+  ]
+}

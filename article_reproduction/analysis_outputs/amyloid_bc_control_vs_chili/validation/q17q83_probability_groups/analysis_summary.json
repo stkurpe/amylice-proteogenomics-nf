@@ -1,0 +1,28 @@
+{
+  "zarr_path": "/Users/user841/Projects/BIoinfServer/Results_analysis/bioinfo_zarr/validation_project.zarr",
+  "output_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/validation/q17q83_probability_groups",
+  "validation_samples": [
+    "SRR32060218",
+    "SRR32060222",
+    "SRR32060224",
+    "SRR32060226",
+    "SRR32060252",
+    "SRR32060255",
+    "SRR32060299",
+    "SRR32060304"
+  ],
+  "thresholds": {
+    "AMYPred-FRL": {
+      "low": 0.1206,
+      "high": 0.8802,
+      "prob_col": "AMYPred_Prob"
+    },
+    "AmyloGramPy": {
+      "low": 0.6947,
+      "high": 0.8898,
+      "prob_col": "AmyloGramPy_Prob"
+    }
+  },
+  "n_protein_coding_collapsed_rows": 113954,
+  "n_samples": 8
+}

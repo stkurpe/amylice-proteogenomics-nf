@@ -52,6 +52,7 @@ The Nextflow workflow performs:
 ├── docker/                    # Nextflow Docker images
 ├── tests_nextflow/            # Nextflow contract, smoke, and fixture tests
 ├── docs/                      # Pipeline documentation and figures
+├── article_reproduction/      # Article reproduction notebooks and analysis outputs
 └── REPRODUCIBILITY.md         # Nextflow reproducibility guide
 ```
 
@@ -150,6 +151,56 @@ nextflow run nextflow/main.nf \
   --kallisto_index references/transcriptome.idx \
   --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
   --outdir results_nextflow
+```
+
+## Bash/S3 Compatibility Entrypoints
+
+The repository also retains the original server-oriented bash/S3 entrypoints
+for compatibility with existing production runs:
+
+```bash
+export AWS_PROFILE=user-sandbox
+export AWS_REGION=us-east-1
+export S3_BUCKET=s3://your-bucket/your-prefix
+export CLEANUP_AFTER_UPLOAD=true
+```
+
+Run the complete bash workflow:
+
+```bash
+./run_full_pipeline.sh \
+  --samples samples.txt \
+  --s3-bucket "$S3_BUCKET"
+```
+
+Equivalent explicit complete-processing entrypoint:
+
+```bash
+./run_complete_processing_pipeline.sh \
+  --samples samples.txt \
+  --s3-bucket "$S3_BUCKET"
+```
+
+Run amyloid predictors only, after `combine_proteome.fasta` already exists:
+
+```bash
+./run_amyloid_predictors.sh \
+  --sample SRR32060234 \
+  --output-s3 s3://your-bucket/your-prefix/SRR32060234/results_amyloid
+```
+
+Force amyloid recomputation:
+
+```bash
+./run_amyloid_predictors.sh --sample SRR32060234 --force
+```
+
+Run proteome generation from already prepared S3 inputs:
+
+```bash
+SOURCE_S3=s3://prepared-ngsdata \
+DEST_S3=s3://your-bucket/prepared-bioinfo-proteome \
+./run_prepared_proteomes_from_bioinfo.sh
 ```
 
 ## Main Outputs

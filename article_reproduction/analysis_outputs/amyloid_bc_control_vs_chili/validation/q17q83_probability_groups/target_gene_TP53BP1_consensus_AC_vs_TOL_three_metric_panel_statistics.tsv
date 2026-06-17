@@ -1,0 +1,4 @@
+metric	n_AC	n_TOL	mean_AC	mean_TOL	delta_mean_TOL_minus_AC	mannwhitney_p_value	cliffs_delta_TOL_vs_AC
+absolute_burden	3	2	2.2044450032331233	4.192880479639038	1.9884354764059151	1.0	0.0
+normalized_fraction	3	2	4.59846993524712e-05	8.972749422680047e-05	4.374279487432926e-05	1.0	0.0
+KDmax_weighted_fraction	3	2	5.1709603718116286e-05	9.1936461749672e-05	4.022685803155571e-05	1.0	0.0

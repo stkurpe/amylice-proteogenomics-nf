@@ -1,0 +1,69 @@
+{
+  "method": "Patient-Level Amyloid Risk Voting",
+  "output_dir": "/Users/user841/Documents/Article/analysis_outputs/amyloid_bc_control_vs_chili/patient_level_amyloid_risk_voting",
+  "timepoint": "BC",
+  "group_mapping": {
+    "control": "AC",
+    "chili": "TOL"
+  },
+  "n_selected_BC_samples": 11,
+  "group_counts_all": {
+    "AC": 6,
+    "TOL": 5
+  },
+  "coverage_min": 0.5,
+  "excluded_qc_samples": [
+    {
+      "sample": "SRR32060276",
+      "Group": "TOL",
+      "raw_Group": "chili",
+      "subject": "N132",
+      "protein_coding_annotation_fraction": 0.0872546434402465
+    }
+  ],
+  "panel_genes": [
+    "S100A9",
+    "B2M",
+    "LYZ",
+    "CLU"
+  ],
+  "vote_threshold_rule": "high if sample value is greater than the maximum AC/control value within the same analysis set",
+  "risk_vote_statistics": [
+    {
+      "analysis_set": "all_BC_samples",
+      "n_AC": 6,
+      "n_TOL": 5,
+      "mean_AC": 0.0,
+      "mean_TOL": 0.6,
+      "median_AC": 0.0,
+      "median_TOL": 1.0,
+      "delta_mean_TOL_minus_AC": 0.6,
+      "bootstrap_delta_mean_ci_low": 0.2,
+      "bootstrap_delta_mean_ci_high": 1.0,
+      "cliffs_delta_TOL_vs_AC": 0.6,
+      "mannwhitney_two_sided_p": 0.04512694888867611,
+      "mannwhitney_one_sided_p_TOL_gt_AC": 0.022563474444338056,
+      "exact_label_permutation_p_TOL_gt_AC": 0.06263498920086392,
+      "exact_label_permutation_two_sided_p": 0.06263498920086392,
+      "n_exact_label_permutations": 462
+    },
+    {
+      "analysis_set": "coverage_QC_protein_coding_annotation_fraction_ge_0_5",
+      "n_AC": 6,
+      "n_TOL": 4,
+      "mean_AC": 0.0,
+      "mean_TOL": 0.5,
+      "median_AC": 0.0,
+      "median_TOL": 0.5,
+      "delta_mean_TOL_minus_AC": 0.5,
+      "bootstrap_delta_mean_ci_low": 0.0,
+      "bootstrap_delta_mean_ci_high": 1.0,
+      "cliffs_delta_TOL_vs_AC": 0.5,
+      "mannwhitney_two_sided_p": 0.09217699229803637,
+      "mannwhitney_one_sided_p_TOL_gt_AC": 0.046088496149018186,
+      "exact_label_permutation_p_TOL_gt_AC": 0.13744075829383887,
+      "exact_label_permutation_two_sided_p": 0.13744075829383887,
+      "n_exact_label_permutations": 210
+    }
+  ]
+}
