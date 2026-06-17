@@ -20,7 +20,11 @@ class Phase0ContractTests(unittest.TestCase):
             NEXTFLOW_DIR / "modules" / "proteome.nf",
             SAMPLES_CSV,
             PROJECT_DIR / "docker" / "proteome-nextflow" / "Dockerfile",
+            PROJECT_DIR / "docker" / "amypred-frl-nextflow" / "Dockerfile",
+            PROJECT_DIR / "docker" / "protein-features-nextflow" / "Dockerfile",
             PROJECT_DIR / "tests_nextflow" / "run_prepared_smoke.sh",
+            PROJECT_DIR / "tests_nextflow" / "run_aws_prepared_reference.sh",
+            PROJECT_DIR / "tests_nextflow" / "compare_fasta_exact.py",
             PROJECT_DIR / "tests_nextflow" / "test_resume.sh",
         ]
         missing = [str(path.relative_to(PROJECT_DIR)) for path in expected if not path.is_file()]
@@ -42,6 +46,29 @@ class Phase0ContractTests(unittest.TestCase):
         ]:
             self.assertIn(f"process {process_name}", module_text)
 
+    def test_full_upstream_processes_are_declared(self) -> None:
+        module_text = (NEXTFLOW_DIR / "modules" / "upstream.nf").read_text(encoding="utf-8")
+        for process_name in [
+            "DOWNLOAD_FASTQ",
+            "FASTQC_READS",
+            "KALLISTO_QUANT",
+            "STAR_ALIGN",
+            "MARK_DUPLICATES",
+            "INDEX_DEDUP_BAM",
+            "GATK_SPLIT_N_CIGAR",
+            "INDEX_SPLIT_BAM",
+            "GATK_HAPLOTYPE_CALLER",
+            "GATK_VARIANT_FILTRATION",
+        ]:
+            self.assertIn(f"process {process_name}", module_text)
+
+    def test_amyloid_feature_processes_are_declared(self) -> None:
+        module_text = (NEXTFLOW_DIR / "modules" / "amyloid.nf").read_text(encoding="utf-8")
+        self.assertIn("process AMYPRED_FRL", module_text)
+        self.assertIn("process PROTEIN_FEATURES_LIGHT", module_text)
+        self.assertIn("process PROTEIN_FEATURES_FULL", module_text)
+        self.assertIn("process MERGE_AMYLOID_PREDICTIONS_AMYPRED_PY", module_text)
+
     def test_prepared_smoke_script_runs_nextflow_and_checks_outputs(self) -> None:
         smoke = (PROJECT_DIR / "tests_nextflow" / "run_prepared_smoke.sh").read_text(encoding="utf-8")
         self.assertIn("docker build -t amyloid-proteome-nextflow:local", smoke)
@@ -62,6 +89,26 @@ class Phase0ContractTests(unittest.TestCase):
         self.assertIn("grep -c '^>'", smoke)
         self.assertIn("results_amyloid", smoke)
         self.assertIn("results_protein_features", smoke)
+
+    def test_aws_reference_script_uses_reference_profile_and_exact_compare(self) -> None:
+        script = (PROJECT_DIR / "tests_nextflow" / "run_aws_prepared_reference.sh").read_text(encoding="utf-8")
+        self.assertIn("-profile docker,aws_reference", script)
+        self.assertIn("--mode prepared", script)
+        self.assertIn("AWS_PREPARED_ABUNDANCE", script)
+        self.assertIn("AWS_PREPARED_VCF", script)
+        self.assertIn("AWS_REFERENCE_FASTA", script)
+        self.assertIn("compare_fasta_exact.py", script)
+        self.assertIn("EXPECTED_RECORDS", script)
+        self.assertIn("EXPECTED_SEQUENCE_SET_MD5", script)
+        self.assertIn("RUN_AMYPRED", script)
+        self.assertIn("docker build -t amypred-frl-nextflow:local", script)
+        self.assertIn("--run_amypred true", script)
+        self.assertIn("RUN_AMYLOGRAM_R", script)
+        self.assertIn("docker build -t amylogram-r-nextflow:local", script)
+        self.assertIn("--run_amylogram_r true", script)
+        self.assertIn("RUN_PROTEIN_FEATURES", script)
+        self.assertIn("docker build -t protein-features-nextflow:local", script)
+        self.assertIn("--run_protein_features true", script)
 
     def test_phase5_resume_script_checks_cache_and_reports(self) -> None:
         resume = (PROJECT_DIR / "tests_nextflow" / "test_resume.sh").read_text(encoding="utf-8")

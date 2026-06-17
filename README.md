@@ -1,76 +1,173 @@
-# Amyloid Mutant Proteome Pipeline
+# Amyloid Mutant Proteome Nextflow Pipeline
 
-Reproducible single-sample bioinformatics workflow for generating a cleaned mutant proteome from public SRA RNA-seq data, scoring amyloidogenicity, and calculating protein physicochemical properties.
+Reproducible Nextflow DSL2 workflow for SRA-to-mutant-proteome processing, amyloidogenicity scoring, and protein sequence feature calculation.
 
-- **AMYPred-FRL** for protein-level amyloid probability.
-- **AmyloGram** in an optimized Docker runner with sequence deduplication, chunk checkpoints, and S3 upload.
-- **ProteinFeatures** R step for protein length, Kyte-Doolittle hydrophobicity, charge, aromaticity, alpha/beta propensity, chameleon score, and pI.
-
-The pipeline was developed for translational bioinformatics and immuno-oncology use cases where each sample is processed independently on a server.
+The repository is Nextflow-first. The workflow now includes a native Nextflow full mode for SRA download, QC, expression quantification, alignment, variant calling, proteome generation, AmyloGram-Py scoring, optional AMYPred-FRL scoring, and lightweight feature calculation. Production scientific components such as R `AmyloGram` and full `ProteinFeatures` are retained for Nextflow integration.
 
 ## What It Does
 
-For each SRA accession, the workflow performs:
+In full mode, each sample starts from an SRA accession:
 
-1. FASTQ download from a public repository/SRA.
-2. FastQC read quality control.
+```text
+SRA accession
+```
+
+In prepared mode, each sample starts from prepared upstream files:
+
+```text
+abundance.tsv
+variants_filtered.vcf
+reference genome FASTA
+reference GTF
+AmyloGram-Py six-mer table
+```
+
+The Nextflow workflow performs:
+
+1. FASTQ download with SRA Toolkit.
+2. FastQC read quality reports.
 3. Kallisto transcript quantification.
-4. STAR alignment and GATK variant calling.
-5. Mutant proteome generation:
-   - expression and mitochondrial filtering;
-   - protection against ultra-short CDS records that can crash `gffread`;
-   - nonsense mutation truncation at the first stop;
-   - frameshift protein reconstruction by surgical indel insertion/deletion;
-   - per-gene sequence deduplication;
-   - final `combine_proteome.fasta`.
-6. Amyloidogenicity prediction:
-   - AMYPred-FRL;
-   - AmyloGram;
-   - merged consensus table.
-7. Protein physicochemical feature calculation from `combine_proteome.fasta`.
-8. Upload of results, logs, manifests, QC, expression, BAM and variant artifacts to S3.
+4. STAR alignment.
+5. Picard duplicate marking.
+6. GATK RNA-seq variant calling and filtration.
+7. Expression and CDS filtering.
+8. SNP/nonsense proteome reconstruction.
+9. Frameshift protein reconstruction.
+10. Combined mutant proteome generation and verification.
+11. AmyloGram-Py prediction.
+12. Consensus-compatible amyloid table normalization.
+13. Lightweight protein feature calculation.
+
+`AMYPred-FRL` and full `ProteinFeatures` are kept under `amyloid_predictors/` and are not considered legacy. AMYPred-FRL is available in Nextflow prepared/full branches when its `data/` and `model/` runtime assets are present. Full `ProteinFeatures` is retained for production integration; the current default branch emits light feature outputs.
 
 ## Repository Layout
 
 ```text
 .
-├── pipeline_scripts/          # Main bash pipeline steps
-├── proteome_pipeline/         # Python library for FASTA/GTF/VCF/proteome logic
-├── docker/amylogram/          # Reproducible AmyloGram Docker image
-├── tests/                     # Proteome/static tests
-├── tests_amyloid/             # Amyloid predictor contract tests
-├── run_full_pipeline.sh       # One-command end-to-end runner
-├── run_complete_processing_pipeline.sh
-│                              # Explicit complete workflow runner including protein features
-├── run_prepared_proteomes_from_bioinfo.sh
-│                              # Proteome-only batch from prepared S3 inputs
-├── run_amyloid_predictors.sh  # AMYPred-FRL + AmyloGram + ProteinFeatures runner
-├── predict_amylogram_fast.R   # Optimized AmyloGram batch runner
-└── REPRODUCIBILITY.md         # Full reproducibility guide
+├── nextflow/                  # DSL2 workflow and modules
+├── nextflow.config            # Profiles and default parameters
+├── proteome_pipeline/         # Python library used by Nextflow proteome modules
+├── amyloid_predictors/        # AMYPred-FRL and ProteinFeatures production components
+├── amylogram-py/              # AmyloGram-Py package and fixtures
+├── docker/                    # Nextflow Docker images
+├── tests_nextflow/            # Nextflow contract, smoke, and fixture tests
+├── docs/                      # Pipeline documentation and figures
+├── article_reproduction/      # Article reproduction notebooks and analysis outputs
+└── REPRODUCIBILITY.md         # Nextflow reproducibility guide
 ```
 
 ## Quick Start
 
-Prepare a sample list:
+Run the minimal prepared-input fixture:
 
 ```bash
-cp samples.txt.example samples.txt
+bash tests_nextflow/run_prepared_smoke.sh
 ```
 
-Edit `samples.txt`:
+Run the amyloid-only fixture:
 
-```text
-SRR32060234
+```bash
+bash tests_nextflow/run_amyloid_smoke.sh
 ```
 
-Run the complete workflow:
+Run Nextflow directly:
+
+```bash
+nextflow run nextflow/main.nf \
+  -profile test,docker \
+  --mode prepared \
+  --samples tests_nextflow/fixtures/prepared_minimal/samples.prepared.csv \
+  --ref_genome tests_nextflow/fixtures/prepared_minimal/genome.fa \
+  --ref_gtf tests_nextflow/fixtures/prepared_minimal/annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow
+```
+
+For AWS/reference-compatible proteome reproduction, add the `aws_reference`
+profile. This sets `--min_cds_bp 1` and preserves ultra-short CDS-derived
+peptides that are present in the reference proteome:
+
+```bash
+nextflow run nextflow/main.nf \
+  -profile docker,aws_reference \
+  --mode prepared \
+  --samples samples.prepared.csv \
+  --ref_genome references/GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow_reference
+```
+
+The default `--min_cds_bp 10` intentionally filters ultra-short CDS records.
+Use `aws_reference` when exact comparison against the AWS/reference
+`combine_proteome.fasta` is required.
+
+Run prepared mode with AMYPred-FRL enabled:
+
+```bash
+nextflow run nextflow/main.nf \
+  -profile docker,aws_reference \
+  --mode prepared \
+  --samples samples.prepared.csv \
+  --ref_genome references/GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --run_amypred true \
+  --outdir results_nextflow_amypred
+```
+
+This requires a complete `amyloid_predictors/AMYPred-FRL` directory containing
+`predict.py`, `data/PAAC.txt`, `data/TR_P_132.fasta`, `data/TR_N_305.fasta`,
+and `model/pima.pickle_model_svm_PF.dat`.
+
+Add old R AmyloGram and full R ProteinFeatures when production-style outputs
+are needed:
+
+```bash
+nextflow run nextflow/main.nf \
+  -profile docker,aws_reference \
+  --mode prepared \
+  --samples samples.prepared.csv \
+  --ref_genome references/GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --run_amypred true \
+  --run_amylogram_r true \
+  --run_protein_features true \
+  --outdir results_nextflow_production
+```
+
+Run full SRA-to-results mode:
+
+```bash
+nextflow run nextflow/main.nf \
+  -profile docker \
+  --mode full \
+  --samples samples.txt \
+  --ref_dir references \
+  --ref_genome_name GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --star_index references/star_index_full \
+  --kallisto_index references/transcriptome.idx \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow
+```
+
+## Bash/S3 Compatibility Entrypoints
+
+The repository also retains the original server-oriented bash/S3 entrypoints
+for compatibility with existing production runs:
 
 ```bash
 export AWS_PROFILE=user-sandbox
 export AWS_REGION=us-east-1
 export S3_BUCKET=s3://your-bucket/your-prefix
 export CLEANUP_AFTER_UPLOAD=true
+```
 
+Run the complete bash workflow:
+
+```bash
 ./run_full_pipeline.sh \
   --samples samples.txt \
   --s3-bucket "$S3_BUCKET"
@@ -121,34 +218,48 @@ results_proteins/
   manifest.txt
 
 results_amyloid/
-  amypred_frl_prediction.csv
-  amylogram_prediction_fast.csv
-  protein_features.csv
+  amypred_frl_prediction.csv          # when --run_amypred true
+  amylogram_py_prediction.csv
+  amylogram_py_report.json
+  amylogram_py_report.md
+  amylogram_py_skipped.tsv
+  amylogram_py_top_hits.tsv
   amyloid_combined_predictions.csv
   amyloid_predictors_status.tsv
   amyloid_predictors_summary.tsv
 
 results_protein_features/
-  protein_features.csv
-  protein_features_status.tsv
-  protein_features_summary.tsv
-  logs/
-
-results_qc/
-results_expression/
-results_star/
-results_gatk/
-logs/
+  protein_features_light.csv
+  protein_features_light_status.tsv
+  protein_features_light_summary.tsv
+  protein_features.csv                # when full ProteinFeatures integration is enabled
 ```
 
 ## Tests
 
-Run static and unit tests:
+Run the lightweight contract tests:
 
 ```bash
-python3 -m pytest tests tests_amyloid
-bash tests/run_static_tests.sh
-bash tests_amyloid/run_amyloid_contract_tests.sh
-bash tests_amyloid/test_run_amyloid_predictors_static.sh ./run_amyloid_predictors.sh
+python3 -m unittest tests_nextflow.test_contract
+python3 -m py_compile tests_nextflow/validate_amyloid_outputs.py tests_nextflow/test_amyloid_outputs.py
+bash -n tests_nextflow/run_prepared_smoke.sh
+bash -n tests_nextflow/run_amyloid_smoke.sh
+bash -n tests_nextflow/test_resume.sh
 ```
 
+Run executable smoke tests when Docker and Nextflow are available:
+
+```bash
+bash tests_nextflow/run_prepared_smoke.sh
+bash tests_nextflow/run_amyloid_smoke.sh
+```
+
+## Safety
+
+This repository intentionally does **not** include:
+
+- AWS credentials;
+- SSH keys;
+- `.aws/`;
+- FASTQ/BAM/reference production datasets;
+- generated results.

@@ -111,52 +111,52 @@ def require_files(root: Path) -> None:
             fail(f"Required file is empty: {path}")
 
 
-def compare_fasta_file(bash_root: Path, nf_root: Path, filename: str) -> FastaComparison:
-    bash_records = read_fasta(bash_root / filename)
+def compare_fasta_file(expected_root: Path, nf_root: Path, filename: str) -> FastaComparison:
+    expected_records = read_fasta(expected_root / filename)
     nf_records = read_fasta(nf_root / filename)
 
-    assert_no_invalid_aa_explosion(f"bash {filename}", bash_records)
+    assert_no_invalid_aa_explosion(f"expected {filename}", expected_records)
     assert_no_invalid_aa_explosion(f"nextflow {filename}", nf_records)
 
-    bash_ids = set(bash_records)
+    expected_ids = set(expected_records)
     nf_ids = set(nf_records)
-    if bash_ids != nf_ids:
-        missing = sorted(bash_ids - nf_ids)
-        extra = sorted(nf_ids - bash_ids)
+    if expected_ids != nf_ids:
+        missing = sorted(expected_ids - nf_ids)
+        extra = sorted(nf_ids - expected_ids)
         fail(f"{filename}: sequence IDs differ; missing={missing[:10]} extra={extra[:10]}")
 
     mismatched = [
         seq_id
-        for seq_id in sorted(bash_ids)
-        if bash_records[seq_id] != nf_records[seq_id]
+        for seq_id in sorted(expected_ids)
+        if expected_records[seq_id] != nf_records[seq_id]
     ]
     if mismatched:
         fail(f"{filename}: sequences differ for IDs: {mismatched[:10]}")
 
-    if len(bash_records) != len(nf_records):
-        fail(f"{filename}: record count differs: bash={len(bash_records)} nextflow={len(nf_records)}")
+    if len(expected_records) != len(nf_records):
+        fail(f"{filename}: record count differs: expected={len(expected_records)} nextflow={len(nf_records)}")
 
     return FastaComparison(filename=filename, record_count=len(nf_records))
 
 
-def compare_outputs(bash_root: Path, nf_root: Path) -> list[FastaComparison]:
-    require_files(bash_root)
+def compare_outputs(expected_root: Path, nf_root: Path) -> list[FastaComparison]:
+    require_files(expected_root)
     require_files(nf_root)
 
-    bash_clean = read_clean_ids(bash_root / "clean_ids.txt")
+    expected_clean = read_clean_ids(expected_root / "clean_ids.txt")
     nf_clean = read_clean_ids(nf_root / "clean_ids.txt")
-    if bash_clean != nf_clean:
+    if expected_clean != nf_clean:
         fail("clean_ids.txt differs after sorting")
 
-    assert_verification_all_ok(bash_root / "verification_report.tsv")
+    assert_verification_all_ok(expected_root / "verification_report.tsv")
     assert_verification_all_ok(nf_root / "verification_report.tsv")
 
-    return [compare_fasta_file(bash_root, nf_root, filename) for filename in FASTA_FILES]
+    return [compare_fasta_file(expected_root, nf_root, filename) for filename in FASTA_FILES]
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Compare legacy bash and Nextflow proteome outputs.")
-    parser.add_argument("--bash-output", required=True, type=Path, help="Legacy bash results_proteins directory.")
+    parser = argparse.ArgumentParser(description="Compare expected fixture and Nextflow proteome outputs.")
+    parser.add_argument("--expected-output", required=True, type=Path, help="Expected results_proteins fixture directory.")
     parser.add_argument("--nf-output", required=True, type=Path, help="Nextflow results_proteins directory.")
     return parser
 
@@ -164,7 +164,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
-        comparisons = compare_outputs(args.bash_output, args.nf_output)
+        comparisons = compare_outputs(args.expected_output, args.nf_output)
     except AssertionError as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1

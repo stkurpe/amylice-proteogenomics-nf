@@ -82,8 +82,8 @@ done
 required_amyloid=(
   amylogram_py_prediction.csv
   amyloid_combined_predictions.csv
-  summary.tsv
-  status.tsv
+  amyloid_predictors_summary.tsv
+  amyloid_predictors_status.tsv
 )
 
 for filename in "${required_amyloid[@]}"; do
@@ -91,9 +91,9 @@ for filename in "${required_amyloid[@]}"; do
 done
 
 required_features=(
-  protein_features.csv
-  protein_features_summary.tsv
-  protein_features_status.tsv
+  protein_features_light.csv
+  protein_features_light_summary.tsv
+  protein_features_light_status.tsv
 )
 
 for filename in "${required_features[@]}"; do
@@ -105,9 +105,9 @@ grep -q CACHED "$TRACE_SECOND"
 grep -Eq 'CACHED|COMPLETED' "$TRACE_SECOND"
 
 python3 tests_nextflow/compare_proteome_outputs.py \
-  --bash-output "$EXPECTED_DIR" \
+  --expected-output "$EXPECTED_DIR" \
   --nf-output "$RESULTS_DIR"
 python3 tests_nextflow/validate_amyloid_outputs.py "$AMYLOID_RESULTS_DIR"
-grep -q OK "${FEATURE_RESULTS_DIR}/protein_features_status.tsv"
+grep -q OK "${FEATURE_RESULTS_DIR}/protein_features_light_status.tsv"
 
 echo "Prepared resume test passed: ${RUN_ROOT}"

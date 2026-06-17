@@ -18,7 +18,7 @@ def read(path: Path) -> str:
 
 def test_config_profiles_are_declared() -> None:
     config = read(PROJECT_DIR / "nextflow.config")
-    for profile in ["local", "test", "docker"]:
+    for profile in ["local", "test", "aws_reference", "docker"]:
         assert re.search(rf"\b{profile}\s*\{{", config), f"missing {profile} profile"
 
 

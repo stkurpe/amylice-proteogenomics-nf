@@ -1,4 +1,3 @@
 [tool.pytest.ini_options]
-testpaths = ["tests", "tests_amyloid"]
+testpaths = ["tests_nextflow"]
 pythonpath = ["."]
-
