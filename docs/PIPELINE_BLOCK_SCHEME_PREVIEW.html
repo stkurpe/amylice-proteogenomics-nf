@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipeline Block Scheme Preview</title>
+  <style>
+    :root {
+      --ink: #1c2530;
+      --muted: #5f6b7a;
+      --line: #8d9aae;
+      --input: #e8f3ff;
+      --bio: #eaf7ee;
+      --variant: #fff2d8;
+      --risk: #fdecef;
+      --output: #eef0ff;
+      --border: #c9d2de;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f7f9fc;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    h1 {
+      margin: 0 0 20px;
+      font-size: 28px;
+      font-weight: 720;
+      letter-spacing: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr 1fr;
+      gap: 16px 18px;
+      align-items: stretch;
+    }
+    .lane {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+    .lane-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .block {
+      min-height: 72px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      padding: 14px 16px;
+      box-shadow: 0 8px 20px rgba(28, 37, 48, .06);
+      display: grid;
+      align-content: center;
+      gap: 4px;
+    }
+    .block strong {
+      font-size: 15px;
+      line-height: 1.25;
+    }
+    .block span {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+    .input { background: var(--input); }
+    .bio { background: var(--bio); }
+    .variant { background: var(--variant); }
+    .risk { background: var(--risk); }
+    .output { background: var(--output); }
+    .arrow {
+      height: 20px;
+      position: relative;
+    }
+    .arrow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 20px;
+      border-left: 2px solid var(--line);
+    }
+    .arrow::after {
+      content: "";
+      position: absolute;
+      left: calc(50% - 5px);
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--line);
+      border-bottom: 2px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .merge {
+      grid-column: 2 / 4;
+    }
+    .outputs {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+    @media (max-width: 720px) {
+      main { padding: 18px; }
+      .grid, .outputs { grid-template-columns: 1fr; }
+      .merge { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Biological Pipeline Block Scheme</h1>
+    <section class="grid" aria-label="Pipeline block scheme">
+      <div class="lane">
+        <div class="lane-title">Inputs</div>
+        <div class="block input"><strong>RNA-seq sample</strong><span>raw public data or prepared study outputs</span></div>
+        <div class="arrow"></div>
+        <div class="block input"><strong>Expression table</strong><span>which transcripts are active?</span></div>
+        <div class="block input"><strong>Filtered variant calls</strong><span>which loci are altered?</span></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-title">Biological filtering</div>
+        <div class="block bio"><strong>Expressed coding transcripts</strong><span>TPM and CDS-length filtering</span></div>
+        <div class="arrow"></div>
+        <div class="block bio"><strong>Active CDS set</strong><span>sample-specific transcript whitelist</span></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-title">Protein generation</div>
+        <div class="block variant"><strong>SNP and nonsense proteins</strong><span>haplotype translation and early-stop truncation</span></div>
+        <div class="block variant"><strong>Frameshift proteins</strong><span>coding indels and novel C-terminal tails</span></div>
+        <div class="arrow"></div>
+        <div class="block bio"><strong>Mutant proteome</strong><span>combined altered proteins for the sample</span></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-title">Interpretation</div>
+        <div class="block risk"><strong>Amyloidogenicity prediction</strong><span>aggregation-risk scoring per sequence</span></div>
+        <div class="block risk"><strong>Protein feature profiling</strong><span>length, charge, hydrophobicity, structural tendencies</span></div>
+        <div class="arrow"></div>
+        <div class="block output"><strong>Integrated sample report</strong><span>proteome, amyloid risk, and interpretable features</span></div>
+      </div>
+    </section>
+
+    <section class="outputs" aria-label="Main outputs">
+      <div class="block output"><strong>Mutant protein sequence set</strong><span>sequence-level substrate for reuse</span></div>
+      <div class="block output"><strong>Amyloid risk table</strong><span>risk-oriented protein prioritization</span></div>
+      <div class="block output"><strong>Protein feature table</strong><span>biochemical descriptors for interpretation</span></div>
+    </section>
+  </main>
+</body>
+</html>

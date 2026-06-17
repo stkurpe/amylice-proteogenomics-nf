@@ -55,14 +55,14 @@ records="$(grep -c '^>' "${RESULTS_DIR}/combine_proteome.fasta")"
 test "$records" -gt 0
 
 python3 tests_nextflow/compare_proteome_outputs.py \
-  --bash-output "$EXPECTED_DIR" \
+  --expected-output "$EXPECTED_DIR" \
   --nf-output "$RESULTS_DIR"
 
 amyloid_required=(
   amylogram_py_prediction.csv
   amyloid_combined_predictions.csv
-  summary.tsv
-  status.tsv
+  amyloid_predictors_summary.tsv
+  amyloid_predictors_status.tsv
 )
 
 for filename in "${amyloid_required[@]}"; do
@@ -72,16 +72,16 @@ done
 python3 tests_nextflow/validate_amyloid_outputs.py "$AMYLOID_RESULTS_DIR"
 
 feature_required=(
-  protein_features.csv
-  protein_features_summary.tsv
-  protein_features_status.tsv
+  protein_features_light.csv
+  protein_features_light_summary.tsv
+  protein_features_light_status.tsv
 )
 
 for filename in "${feature_required[@]}"; do
   test -s "${FEATURE_RESULTS_DIR}/${filename}"
 done
 
-grep -q protein_id "${FEATURE_RESULTS_DIR}/protein_features.csv"
-grep -q OK "${FEATURE_RESULTS_DIR}/protein_features_status.tsv"
-feature_rows="$(tail -n +2 "${FEATURE_RESULTS_DIR}/protein_features.csv" | grep -c .)"
+grep -q protein_id "${FEATURE_RESULTS_DIR}/protein_features_light.csv"
+grep -q OK "${FEATURE_RESULTS_DIR}/protein_features_light_status.tsv"
+feature_rows="$(tail -n +2 "${FEATURE_RESULTS_DIR}/protein_features_light.csv" | grep -c .)"
 test "$feature_rows" -gt 0

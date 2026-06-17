@@ -27,12 +27,12 @@ def write_fixture(root: Path, protein_seq: str = "MAIVMGR") -> None:
 
 
 def test_compare_outputs_accepts_matching_normalized_fastas(tmp_path: Path) -> None:
-    bash_root = tmp_path / "bash"
+    expected_root = tmp_path / "expected"
     nf_root = tmp_path / "nf"
-    write_fixture(bash_root)
+    write_fixture(expected_root)
     write_fixture(nf_root)
 
-    comparisons = compare_outputs(bash_root, nf_root)
+    comparisons = compare_outputs(expected_root, nf_root)
     assert {item.filename for item in comparisons} == {
         "protein.fasta",
         "frameshift_unique.fasta",
@@ -41,16 +41,16 @@ def test_compare_outputs_accepts_matching_normalized_fastas(tmp_path: Path) -> N
 
 
 def test_compare_outputs_rejects_sequence_mismatch(tmp_path: Path) -> None:
-    bash_root = tmp_path / "bash"
+    expected_root = tmp_path / "expected"
     nf_root = tmp_path / "nf"
-    write_fixture(bash_root)
+    write_fixture(expected_root)
     write_fixture(nf_root, protein_seq="MTIVMGR")
 
     result = subprocess.run(
         [
             str(SCRIPT),
-            "--bash-output",
-            str(bash_root),
+            "--expected-output",
+            str(expected_root),
             "--nf-output",
             str(nf_root),
         ],

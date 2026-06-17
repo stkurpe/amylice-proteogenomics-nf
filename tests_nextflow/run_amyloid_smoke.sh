@@ -33,8 +33,8 @@ nextflow run nextflow/main.nf \
 required=(
   amylogram_py_prediction.csv
   amyloid_combined_predictions.csv
-  summary.tsv
-  status.tsv
+  amyloid_predictors_summary.tsv
+  amyloid_predictors_status.tsv
 )
 
 for filename in "${required[@]}"; do
@@ -43,6 +43,6 @@ done
 
 python3 tests_nextflow/validate_amyloid_outputs.py "$RESULTS_DIR"
 
-combined_rows="$(awk -F '\t' '$1 == "combined_rows" {print $2}' "${RESULTS_DIR}/summary.tsv")"
+combined_rows="$(awk -F '\t' '$1 == "combined_rows" {print $2}' "${RESULTS_DIR}/amyloid_predictors_summary.tsv")"
 test "${combined_rows:-0}" -gt 0
-! grep -q $'\tFAIL\t' "${RESULTS_DIR}/status.tsv"
+! grep -q $'\tFAIL\t' "${RESULTS_DIR}/amyloid_predictors_status.tsv"

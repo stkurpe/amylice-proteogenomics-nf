@@ -10,12 +10,12 @@ output_csv <- args[2]
 window <- ifelse(length(args) >= 3, as.integer(args[3]), 7L)
 pH <- ifelse(length(args) >= 4, as.numeric(args[4]), 7.0)
 
-required_packages <- c("Peptides", "protr", "Biostrings", "zoo")
+required_packages <- c("Peptides", "protr", "zoo")
 missing_packages <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
 if (length(missing_packages)) {
   stop(
     sprintf(
-      "Missing R package(s): %s. Install with install.packages(c(\"Peptides\", \"protr\", \"zoo\")) and BiocManager::install(\"Biostrings\").",
+      "Missing R package(s): %s. Install with install.packages(c(\"Peptides\", \"protr\", \"zoo\")).",
       paste(missing_packages, collapse = ", ")
     ),
     call. = FALSE
@@ -24,7 +24,6 @@ if (length(missing_packages)) {
 
 suppressPackageStartupMessages(library(Peptides))
 suppressPackageStartupMessages(library(protr))
-suppressPackageStartupMessages(library(Biostrings))
 suppressPackageStartupMessages(library(zoo))
 
 data(AAindex, package = "protr")
@@ -35,6 +34,41 @@ beta_index <- "CHOP780202"
 clean_seq <- function(seq) {
   seq <- toupper(as.character(seq))
   gsub("[^ACDEFGHIKLMNPQRSTVWY]", "", seq)
+}
+
+read_fasta_records <- function(path) {
+  lines <- readLines(path, warn = FALSE)
+  ids <- character()
+  seqs <- character()
+  current_id <- NULL
+  current_seq <- character()
+
+  flush_record <- function() {
+    if (!is.null(current_id)) {
+      ids <<- c(ids, current_id)
+      seqs <<- c(seqs, paste(current_seq, collapse = ""))
+    }
+  }
+
+  for (line in lines) {
+    line <- trimws(line)
+    if (!nzchar(line)) next
+    if (startsWith(line, ">")) {
+      flush_record()
+      current_id <- sub("^>", "", line)
+      current_id <- strsplit(current_id, "\\s+", perl = TRUE)[[1]][1]
+      current_seq <- character()
+    } else {
+      current_seq <- c(current_seq, line)
+    }
+  }
+  flush_record()
+
+  if (!length(ids)) {
+    stop(sprintf("No FASTA records found in %s", path), call. = FALSE)
+  }
+  names(seqs) <- ids
+  seqs
 }
 
 get_aaindex_scale <- function(index_id) {
@@ -144,8 +178,8 @@ calc_features <- function(seq, window = 7L, pH = 7.0) {
   )
 }
 
-seqs <- Biostrings::readAAStringSet(input_fasta)
-features <- do.call(rbind, lapply(as.character(seqs), calc_features, window = window, pH = pH))
+seqs <- read_fasta_records(input_fasta)
+features <- do.call(rbind, lapply(seqs, calc_features, window = window, pH = pH))
 features$protein_id <- names(seqs)
 features <- features[, c(
   "protein_id",

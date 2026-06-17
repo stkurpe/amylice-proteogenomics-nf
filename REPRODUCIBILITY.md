@@ -1,267 +1,163 @@
-# Reproducibility Guide
+# Reproducibility
 
-This document describes how to reproduce a single-sample run from public SRA accession to mutant proteome and amyloidogenicity predictions.
+This repository is a Nextflow workflow with full SRA-to-results mode and prepared-input mode.
 
-## 1. Compute Environment
+## Requirements
 
-Recommended server:
+- Nextflow
+- Docker
+- Python 3
+- Java runtime compatible with Nextflow
 
-- Ubuntu 24.04 LTS or similar Linux distribution.
-- At least 60 GB disk for one sample at a time.
-- 8 CPU threads.
-- 32 GB RAM recommended for comfortable STAR/GATK/AmyloGram runs.
-- Docker available to the workflow user.
-- AWS CLI configured with read access to reference data and write access to the output bucket.
-
-Required command-line tools:
+The smoke tests build local Docker images for:
 
 ```text
-aws
-docker
-fastqc
-fastp
-kallisto
-STAR
-samtools
-bcftools
-gffread
-gatk
-python3
-Rscript, via Docker image for AmyloGram
+amyloid-proteome-nextflow:local
+amylogram-py-nextflow:local
 ```
 
-The workflow is designed for one sample per run. This keeps disk pressure predictable and makes cleanup after successful S3 upload safe.
+## Prepared-Input Mode
 
-## 2. Reference Data
+The workflow starts from files that are already available locally:
 
-The pipeline expects reference files in `REF_DIR`, defaulting to:
+```text
+abundance.tsv
+variants_filtered.vcf
+reference genome FASTA
+reference GTF
+AmyloGram-Py six-mer table
+```
+
+Minimal fixture run:
 
 ```bash
-/home/codex/references
+bash tests_nextflow/run_prepared_smoke.sh
 ```
 
-Default reference filenames are configured in `pipeline_scripts/config.sh`:
+Direct Nextflow invocation:
 
 ```bash
-GRCh38.primary_assembly.genome.fa
-gencode.v46.primary_assembly.annotation.gtf
-common_all_20180418.vcf
-gencode.v46.pc_transcripts.fa
+nextflow run nextflow/main.nf \
+  -profile test,docker \
+  --mode prepared \
+  --samples tests_nextflow/fixtures/prepared_minimal/samples.prepared.csv \
+  --ref_genome tests_nextflow/fixtures/prepared_minimal/genome.fa \
+  --ref_gtf tests_nextflow/fixtures/prepared_minimal/annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow
 ```
 
-If references are stored in S3, configure `pipeline_scripts/config_s3.sh` or set environment variables before launch.
-
-## 3. AWS Configuration
-
-Configure an AWS profile outside the repository:
+Reference-compatible prepared invocation:
 
 ```bash
-aws configure --profile codex-sandbox
+nextflow run nextflow/main.nf \
+  -profile docker,aws_reference \
+  --mode prepared \
+  --samples samples.prepared.csv \
+  --ref_genome references/GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow_reference
 ```
 
-Never commit `.aws`, access key CSV files, tokens, or credentials.
+The `aws_reference` profile sets `--min_cds_bp 1`. This retains ultra-short
+CDS-derived peptides and is intended for exact comparison against the AWS
+reference `combine_proteome.fasta`. The default `--min_cds_bp 10` intentionally
+filters those records.
 
-For a custom output bucket:
+AWS reference regression:
 
 ```bash
-export AWS_PROFILE=codex-sandbox
-export AWS_REGION=us-east-1
-export S3_BUCKET=s3://your-bucket/public-sra-test
+AWS_PREPARED_ABUNDANCE=/path/to/abundance.tsv \
+AWS_PREPARED_VCF=/path/to/variants_filtered.vcf \
+AWS_REFERENCE_FASTA=/path/to/reference/combine_proteome.fasta \
+REF_GENOME=/path/to/GRCh38.primary_assembly.genome.fa \
+REF_GTF=/path/to/gencode.v46.primary_assembly.annotation.gtf \
+bash tests_nextflow/run_aws_prepared_reference.sh
 ```
 
-The final output path for sample `SRR32060234` will be:
+For the validated `SRR32060234` reference run, the expected
+`combine_proteome.fasta` contains 28,343 records and has sorted ID/sequence MD5
+`de4d381238adb9c1e72e714e1e72abb1`.
 
-```text
-s3://your-bucket/public-sra-test/SRR32060234/
-```
-
-## 4. Build AmyloGram Docker Image
-
-Build once on the compute server:
+Set `RUN_AMYPRED=1` on the same script to exercise the optional AMYPred-FRL
+prepared branch:
 
 ```bash
-docker build \
-  -t codex/amylogram:1.1-r4.3.3 \
-  docker/amylogram
+RUN_AMYPRED=1 \
+AWS_PREPARED_ABUNDANCE=/path/to/abundance.tsv \
+AWS_PREPARED_VCF=/path/to/variants_filtered.vcf \
+AWS_REFERENCE_FASTA=/path/to/reference/combine_proteome.fasta \
+REF_GENOME=/path/to/GRCh38.primary_assembly.genome.fa \
+REF_GTF=/path/to/gencode.v46.primary_assembly.annotation.gtf \
+bash tests_nextflow/run_aws_prepared_reference.sh
 ```
 
-The optimized AmyloGram runner uses this image and does not install R packages on every run.
+This requires the complete AMYPred-FRL runtime directory under
+`amyloid_predictors/AMYPred-FRL`, including `data/` training FASTA/PAAC files
+and `model/pima.pickle_model_svm_PF.dat`.
 
-## 5. Prepare Samples
-
-Create `samples.txt`:
-
-```text
-SRR32060234
-```
-
-Only one sample is recommended per run. Multiple samples are supported as separate sequential jobs in the sample file.
-
-## 6. Run End-to-End Workflow
+## Amyloid-Only Mode
 
 ```bash
-export AWS_PROFILE=codex-sandbox
-export AWS_REGION=us-east-1
-export THREADS=8
-export CLEANUP_AFTER_UPLOAD=true
-export PREPARE_REFS=true
-export AMYLOGRAM_CORES=8
-export AMYLOGRAM_CHUNK_SIZE=50
-
-./run_full_pipeline.sh \
-  --samples samples.txt \
-  --s3-bucket "$S3_BUCKET"
+bash tests_nextflow/run_amyloid_smoke.sh
 ```
 
-This runs:
+## Full SRA-To-Results Mode
+
+Full mode requires SRA access plus local reference assets:
 
 ```text
-SRA download
-  -> FastQC
-  -> Kallisto
-  -> STAR/GATK
-  -> mutant proteome generation
-  -> AMYPred-FRL + AmyloGram
-  -> S3 upload
-```
-
-## 7. Run Proteome Only
-
-```bash
-./run_full_pipeline.sh \
-  --samples samples.txt \
-  --s3-bucket "$S3_BUCKET" \
-  --skip-amyloid
-```
-
-## 8. Run Amyloid Predictors Only
-
-Use this after `combine_proteome.fasta` exists locally under:
-
-```text
-/home/codex/amyloid_runs/<SAMPLE_ID>/input/combine_proteome.fasta
-```
-
-or after it is available in:
-
-```text
-s3://bucket/prefix/<SAMPLE_ID>/results_proteins/combine_proteome.fasta
-```
-
-Command:
-
-```bash
-./run_amyloid_predictors.sh \
-  --sample SRR32060234 \
-  --input-s3 "$S3_BUCKET/SRR32060234/results_proteins/combine_proteome.fasta" \
-  --output-s3 "$S3_BUCKET/SRR32060234/results_amyloid"
-```
-
-## 9. Integrity Checks
-
-Proteome generation writes:
-
-```text
-verification_report.tsv
-manifest.txt
-local_proteome.events.tsv
-local_proteome.log
-```
-
-Amyloid prediction writes:
-
-```text
-amyloid_predictors_status.tsv
-amyloid_predictors_summary.tsv
-amyloid_combined_predictions.csv
-```
-
-Inspect status files after every run:
-
-```bash
-cat /home/codex/amyloid_runs/SRR32060234/results/amyloid_predictors_status.tsv
-cat /home/codex/amyloid_runs/SRR32060234/results/amyloid_predictors_summary.tsv
-```
-
-## 10. Expected SRR32060234 Amyloid Summary
-
-From the validated run:
-
-```text
-input_records:   28327
-AMYPred rows:    27978
-AmyloGram rows:  28312
-combined rows:   28312
-```
-
-AmyloGram optimized run:
-
-```text
-valid records:      28312
-unique sequences:   14199
-duplicates saved:   14113
-chunks:             284
-cores:              8
-runtime:            about 52 minutes
-errors:             0
-```
-
-## 11. Cleanup Policy
-
-Set:
-
-```bash
-export CLEANUP_AFTER_UPLOAD=true
-```
-
-The pipeline is intended to remove local sample work only after successful S3 upload. Do not manually delete intermediate files unless the uploaded artifacts have been verified.
-
-## 12. Re-running
-
-For amyloid predictors:
-
-```bash
-./run_amyloid_predictors.sh --sample SRR32060234
-```
-
-If outputs already exist, heavy steps are skipped. To recompute:
-
-```bash
-./run_amyloid_predictors.sh --sample SRR32060234 --force
-```
-
-## 13. Run Proteome Generation From Prepared S3 Inputs
-
-If expression and variant results already exist in S3, the proteome step can be run without redownloading FASTQ or rerunning STAR/GATK.
-
-Expected input structure:
-
-```text
-s3://source-bucket/<SAMPLE_ID>/results_expression/abundance.tsv
-s3://source-bucket/<SAMPLE_ID>/results_gatk/variants_filtered.vcf
-```
-
-or:
-
-```text
-s3://source-bucket/<SAMPLE_ID>/results_gatk/variants_filtered.vcf.gz
-```
-
-The sample list is read from:
-
-```text
-s3://source-bucket/samples.txt
+references/GRCh38.primary_assembly.genome.fa
+references/GRCh38.primary_assembly.genome.fa.fai
+references/GRCh38.primary_assembly.genome.dict
+references/gencode.v46.primary_assembly.annotation.gtf
+references/star_index_full/
+references/transcriptome.idx
 ```
 
 Run:
 
 ```bash
-export SOURCE_S3=s3://bioinfo-data-amylice-2026
-export DEST_S3=s3://codex-test-ngsdata-calculations/prepared-bioinfo-proteome
-export AWS_PROFILE=codex-sandbox
-export AWS_REGION=us-east-1
-
-./run_prepared_proteomes_from_bioinfo.sh
+nextflow run nextflow/main.nf \
+  -profile docker \
+  --mode full \
+  --samples samples.txt \
+  --ref_dir references \
+  --ref_genome_name GRCh38.primary_assembly.genome.fa \
+  --ref_gtf references/gencode.v46.primary_assembly.annotation.gtf \
+  --star_index references/star_index_full \
+  --kallisto_index references/transcriptome.idx \
+  --sixmer_table amylogram-py/tests/fixtures/amylogram_sixmer_probabilities.bin \
+  --outdir results_nextflow
 ```
 
-This script processes one sample at a time, uploads proteome outputs to `DEST_S3`, and cleans the local sample directory only after the upload success marker exists.
+## Resume Check
+
+```bash
+bash tests_nextflow/test_resume.sh
+```
+
+## Expected Outputs
+
+```text
+results_proteins/
+  combine_proteome.fasta
+  protein.fasta
+  frameshift_unique.fasta
+  clean_ids.txt
+  nonsense_candidates.txt
+  verification_report.tsv
+  manifest.txt
+
+results_amyloid/
+  amylogram_py_prediction.csv
+  amyloid_combined_predictions.csv
+  amyloid_predictors_status.tsv
+  amyloid_predictors_summary.tsv
+
+results_protein_features/
+  protein_features_light.csv
+  protein_features_light_status.tsv
+  protein_features_light_summary.tsv
+```

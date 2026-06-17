@@ -28,6 +28,6 @@ RUN apt-get update \
         libtiff5-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e 'options(Ncpus=max(1, parallel::detectCores()-1)); install.packages(c("AmyloGram", "seqinr"), repos="https://cloud.r-project.org"); stopifnot(requireNamespace("AmyloGram", quietly=TRUE)); stopifnot(requireNamespace("seqinr", quietly=TRUE))'
+RUN Rscript -e 'options(Ncpus=max(1, parallel::detectCores()-1)); install.packages(c("AmyloGram", "biogram", "seqinr", "jsonlite"), repos="http://cran.r-project.org"); stopifnot(requireNamespace("AmyloGram", quietly=TRUE)); stopifnot(requireNamespace("seqinr", quietly=TRUE))'
 
 WORKDIR /work

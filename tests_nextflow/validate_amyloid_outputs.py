@@ -8,7 +8,7 @@ import sys
 
 AMYLOGRAM_PY_COLUMNS = ["Sequence_ID", "AmyloGram_Prob", "AmyloGram_Pred"]
 AMYPRED_FRL_COLUMNS = ["Sequence ID", "Amyloid Prob", "Prediction"]
-PROTEIN_FEATURES_COLUMNS = [
+PROTEIN_FEATURES_LIGHT_COLUMNS = [
     "protein_id",
     "protein_length",
     "KD_mean",
@@ -30,6 +30,16 @@ COMBINED_COLUMNS = [
     "AmyloGramPy_Pred",
     "Consensus",
 ]
+COMBINED_FULL_COLUMNS = [
+    "Sequence_ID",
+    "AMYPred_Prob",
+    "AMYPred_Pred",
+    "AmyloGram_Prob",
+    "AmyloGram_Pred",
+    "AmyloGramPy_Prob",
+    "AmyloGramPy_Pred",
+    "Consensus",
+]
 
 
 def read_columns(path: Path) -> list[str]:
@@ -43,6 +53,12 @@ def require_columns(path: Path, expected: list[str]) -> None:
         raise AssertionError(f"{path.name}: expected columns {expected}, got {actual}")
 
 
+def require_any_columns(path: Path, expected_options: list[list[str]]) -> None:
+    actual = read_columns(path)
+    if actual not in expected_options:
+        raise AssertionError(f"{path.name}: expected one of {expected_options}, got {actual}")
+
+
 def validate_outputs(root: Path) -> None:
     amypred = root / "amypred_frl_prediction.csv"
     if amypred.exists():
@@ -50,24 +66,24 @@ def validate_outputs(root: Path) -> None:
 
     require_columns(root / "amylogram_py_prediction.csv", AMYLOGRAM_PY_COLUMNS)
 
-    protein_features = root / "protein_features.csv"
+    protein_features = root / "protein_features_light.csv"
     if protein_features.exists():
-        require_columns(protein_features, PROTEIN_FEATURES_COLUMNS)
+        require_columns(protein_features, PROTEIN_FEATURES_LIGHT_COLUMNS)
 
-    require_columns(root / "amyloid_combined_predictions.csv", COMBINED_COLUMNS)
+    require_any_columns(root / "amyloid_combined_predictions.csv", [COMBINED_COLUMNS, COMBINED_FULL_COLUMNS])
 
     summary = {}
-    with (root / "summary.tsv").open(encoding="utf-8") as handle:
+    with (root / "amyloid_predictors_summary.tsv").open(encoding="utf-8") as handle:
         next(handle)
         for raw in handle:
             key, value = raw.rstrip("\n").split("\t", 1)
             summary[key] = value
     if int(summary.get("combined_rows", "0")) <= 0:
-        raise AssertionError("summary.tsv combined_rows must be > 0")
+        raise AssertionError("amyloid_predictors_summary.tsv combined_rows must be > 0")
 
-    with (root / "status.tsv").open(encoding="utf-8") as handle:
+    with (root / "amyloid_predictors_status.tsv").open(encoding="utf-8") as handle:
         if any("\tFAIL\t" in line for line in handle):
-            raise AssertionError("status.tsv contains FAIL")
+            raise AssertionError("amyloid_predictors_status.tsv contains FAIL")
 
 
 def main(argv: list[str] | None = None) -> int:
